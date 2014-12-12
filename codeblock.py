@@ -1,4 +1,5 @@
-
+from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.textinput import TextInput
 
 class CodeBlock(BoxLayout):
     """A block with an associated function and some number of text
@@ -9,7 +10,7 @@ class CodeBlock(BoxLayout):
         self.parameters = ['']*numberOfParameters
         block = self.ids.root
         for argument in self.parameters:
-            block.add_widget(TextInput)
+            block.add_widget(TextInput())
 
     def numberOfParameters(self):
         return len(self.parameters)
