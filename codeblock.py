@@ -9,7 +9,7 @@ class CodeBlock(BoxLayout):
         self.parameters = ['']*numberOfParameters
         block = self.ids.root
         for argument in self.parameters:
-            block.add_widget(argument)
+            block.add_widget(TextInput)
 
     def numberOfParameters(self):
         return len(self.parameters)
