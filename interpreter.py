@@ -89,7 +89,7 @@ class Interpreter:
 		env = Environment()
 		env.update(vars(math))
 		env.update({
-			'+':op.add, '-':op.sub, '*':op.mul, #'/':op.div, '%': op.mod,
+			'+':op.add, '-':op.sub, '*':op.mul, '/':op.div, '%': op.mod,
 			'>':op.gt, '<':op.lt, '>=':op.ge, '<=':op.le, '=':op.eq,
 			'and':  lambda x,y: x and y,
 			'or':   lambda x,y: x or y,
