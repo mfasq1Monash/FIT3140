@@ -50,10 +50,13 @@ class Interpreter:
         self.global_environment = self.standard_environment()
         self.robotio = newrobotio
 
+    def interpret(self, code):
+        "Interprets and executes code."
+        return self.evaluate(self.parse(code))
 
-    def parse(self, program):
+    def parse(self, code):
         "Read an expression from a string."
-        return self.read_from_tokens(self.tokenize(program))
+        return self.read_from_tokens(self.tokenize(code))
 
     def tokenize(self, s):
         "Convert a string into a list of tokens."

@@ -13,7 +13,7 @@ class Controller():
     def executeProgram(self):
         inter = Interpreter(self.robotio)
         for codeBlock in self.program:
-            Interpreter.execute(str(codeBlock))
+            Interpreter.interpret(str(codeBlock))
 
     def numberOfParameters(self):
         return len(self.parameters)
