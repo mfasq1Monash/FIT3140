@@ -1,4 +1,31 @@
 
 
 <AppController>
-	CodeView:
+	orientation: 'vertical'
+	OurView:
+		id: view_Container
+
+	Button:
+		id: save_Button
+		on_press: root.save_Button(student_Program)
+
+	Button:
+		id: load_Button
+		on_press: root.load_Button()
+
+	Button:
+		id: run_Button
+		on_Press: root.run_Button(student_Program)
+
+	Button:
+		id: debug_Button
+		on_Press: root.debug_Button(student_Program)
+
+	Button:
+		id: exit_Button
+		on_Press: exit()
+
+
+
+
+
