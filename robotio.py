@@ -1,5 +1,5 @@
 from maze import Maze
-from math import cos, sin
+from math import cos, sin, radians
 
 class Facing:
 
@@ -10,8 +10,8 @@ class Facing:
         self.name = string
         self.angle = self.nameReference[self.name]
 
-    def vector(self):
-        return (self.cos(90 - angle), self.sin(90 - angle))
+    def getVector(self):
+        return (int(cos(radians(90 - self.angle))), int(sin(radians(self.angle - 90))))
 
     def turn(self, n):
         self.angle = (self.angle + 90*n) % 360
@@ -23,7 +23,7 @@ class RobotIO:
     def __init__(self):
         self.maze = Maze()
         self.xcoord, self.ycoord = self.maze.getStartLocation()
-        self.facing = Facing(self.maze.getStartFacing)
+        self.facing = Facing(self.maze.getStartFacing())
 
     def move(self, n):
         vector = self.facing.getVector()
@@ -37,15 +37,18 @@ class RobotIO:
     def turn(self, n):
         self.facing = self.facing.turn(n)
 
-    def check_wall(self, vector, distance):
-        return self.maze.isWall((self.xcoord, self.ycoord) + distance*vector)
+    def check_wall(self, unitvector, distance):
+        vector = [i*distance for i in unitvector]
+        xcheck = self.xcoord + vector[0]
+        ycheck = self.ycoord + vector[1]
+        return self.maze.isWall(xcheck, ycheck)
 
-    def detect_wall(self, dectectRange):
+    def detect_wall(self, detectRange):
         vector = self.facing.getVector()
-        for i in range(detectRange):
-            if check_wall(vector, i):
-                return i+1
-        return i+1
+        for i in range(1, detectRange+1):
+            if self.check_wall(vector, i):
+                return i
+        return i
 
     def detect_goal(self, detectRange):
         raise NotImplementedError

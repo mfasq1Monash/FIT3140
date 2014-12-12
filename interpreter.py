@@ -5,6 +5,8 @@ Last Modified: 2014.12.12
 
 Interpreter for a simple functional programming language.
 Access with execute(command)
+
+Based on Peter Norig's Lispy interpreter, http://norvig.com/lispy.html
 '''
 import math, operator as op
 from robotio import RobotIO
