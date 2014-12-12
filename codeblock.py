@@ -1,6 +1,6 @@
 
 
-class CodeBlock(BlockView):
+class CodeBlock(BoxLayout):
     """A block with an associated function and some number of text
     input arguments"""
 
