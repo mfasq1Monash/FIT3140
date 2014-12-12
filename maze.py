@@ -14,6 +14,8 @@ class Maze:
                      [0,1,0,1,1,0,1,0,0],
                      [0,1,0,0,1,1,1,0,1],
                      [1,1,1,0,'G',1,0,0,0]]
+        self.xdimension = 9
+        self.ydimension = 9
 
     def getStartLocation(self):
         return (4,0)
@@ -22,6 +24,9 @@ class Maze:
         return 'South'
 
     def isWall(self, xcoord, ycoord):
+        if( xcoord < 0 or ycoord < 0 or
+            xcoord >= xdimension or ycoord >= ydimension):
+            return True
         if self.grid[ycoord][xcoord] == 1:
             return True
         return False
