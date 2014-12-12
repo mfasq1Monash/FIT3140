@@ -3,8 +3,8 @@ from math import cos, sin
 
 class Facing:
 
-    self.nameReference = {'North':0, 'East':90, 'South':180, 'West':270}
-    self.angleReference = {0:'North', 90:'East', 180:'South', 270:'West'}
+    nameReference = {'North':0, 'East':90, 'South':180, 'West':270}
+    angleReference = {0:'North', 90:'East', 180:'South', 270:'West'}
 
     def __init__(self, string):
         self.name = string
@@ -31,7 +31,8 @@ class RobotIO:
             if check_wall(vector, 1):
                 raise WallHitError
             else:
-                (self.xcoord, self.ycoord) += vector
+                (self.xcoord, self.ycoord) = (self.xcoord + self.ycoord)
+                + vector
 
     def turn(self, n):
         self.facing = self.facing.turn(n)
