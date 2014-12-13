@@ -11,7 +11,7 @@ class AppController(BoxLayout):
 	debug_View = ObjectProperty(None)
 
 	def __init__(self):
-		return 
+		return self
 	
 		def save_Button(student_Program):
 			pass
