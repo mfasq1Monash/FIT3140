@@ -9,22 +9,26 @@ class AppController(BoxLayout):
 	code_View = ObjectProperty(None)
 	run_View = ObjectProperty(None)
 	debug_View = ObjectProperty(None)
+	current_view = ObjectProperty(None)
 
 	def __init__(self):
-		return self
+		#current_View = code_View 
+		# return self
 	
-		def save_Button(student_Program):
-			pass
-			#raise(Not Implemented Error)
+		def save_Button(self, student_Program):
+			self.text = 'not yet implemented'
+			
 
-		def load_Button():
-			pass
-			# raise(Not Implemented Error)
+		def load_Button(self):
+			self.text = 'not yet implemented'
+			
 
-		def run_Button():
-			pass
-			# raise(Not Implemented Error)
+		def run_Button(self):
+			# current_view = run_View
+			self.text = 'not yet implemented'
+			
 
-		def debug_Button():
-			pass
-			# raise(Not Implemented Error)
+		def debug_Button(self):
+			# current_view = debug_View
+			self.text = 'not yet implemented'
+			
