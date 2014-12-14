@@ -1,37 +1,83 @@
+'''
+# Author:  		 Aaron Gruneklee, Michael Asquith
+# Created: 		 2014.12.08
+# Last Modified: 2014.12.15
+
+this is the main controler class it is responsible for displaying the 3 views and
+controls the 5 input buttons.
+
+'''
+
+# classes and methods required
+
 from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
-from kivy.properties import NumericProperty, ReferenceListProperty, ObjectProperty
+from kivy.properties import ListProperty, ObjectProperty
+from codeblock import *
+from functionlist import FunctionList
+
 
 
 class AppController(BoxLayout):
-	
+	# set all the properties of the Controller
+
+	text_colour = ListProperty([1, 0, 0, 1])	
+	commands = ['+ x y', '- x y', '* x y', '/ x y', '% x y', '> x y', '< x y', '>= x y', '<= x y', '= x y', 'and x y', 'or x y', 'not x y']
 	student_Program = ObjectProperty(None)
 	code_View = ObjectProperty(None)
 	run_View = ObjectProperty(None)
 	debug_View = ObjectProperty(None)
 	current_view = ObjectProperty(None)
-	import pdb; pdb.set_trace()
-
+	save_Buttton = ObjectProperty(None)
+	load_Buttton = ObjectProperty(None)
+	run_Buttton = ObjectProperty(None)
+	debug_Buttton = ObjectProperty(None)
+	exit_Buttton = ObjectProperty(None)
 
 	def __init__(self):
-		super(AppController, self).__init__()
-		# you should be able to run code here now
-		# current_View = code_View 
-	
-	def save_Button(self, student_Program):
-		self.text = 'not yet implemented'
+ 	 	super(AppController, self).__init__()
+		# self.ids.predefined_code.add_widget(FunctionList(self.commands))
+
+		# for command in self.commands:
+ 	#  		cmd = command.split()
+ 	#  		self.cmnds = self.ids.predefined_code.add_widget(FunctionList())
+ 	#  		cmnds.append(cmd[0])
+
+ 	 		# self.ids.predefined_code.add_widget(CodeBlock(cmd[0], len(cmd) - 1))
+
+
+	''' saves user program to user defined location '''
+	def save_Button(self):
+		self.ids.save_Button.text = 'not yet implemented'
 			
 
+	''' loads a user program from a user defined location '''
 	def load_Button(self):
-		self.text = 'not yet implemented'
+		self.ids.load_Button.text = 'not yet implemented'
 			
 
+	''' displays maze and robot traversing through the maze '''
 	def run_Button(self):
 		# current_view = run_View
-		self.text = 'not yet implemented'
+		self.ids.run_Button.text = 'not yet implemented'
 			
 
+	''' displays maze and robot traversing through the maze alongside 
+	the user program as it steps through the code'''
 	def debug_Button(self):
 		# current_view = debug_View
-		self.text = 'not yet implemented'
+		self.ids.debug_Button.text = 'not yet implemented'
+
+
+
+
+''' used for testing of module to ensure working correctly '''
+
+class testAppController(App):
+    def build(self):
+        
+        return AppController()
+
+if __name__ == "__main__":
+    testAppController().run()

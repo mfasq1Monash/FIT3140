@@ -8,10 +8,6 @@ from kivy.uix.floatlayout import FloatLayout
 require('1.8.0')
 
 
-# class AppController(Widget):
-#     # layout = FloatLayout()
-#     # layout.add_widget(AppController)
-
 
 class FunctionalProgrammerApp(App):
     def build(self):

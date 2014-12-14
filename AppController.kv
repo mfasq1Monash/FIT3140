@@ -1,34 +1,63 @@
+#:kivy 1.8.0
+
+# Author:        Aaron Gruneklee, Michael Asquith
+# Created:       2014.12.09
+# Last Modified: 2014.12.14
+
+# App controller layout initially a boxlayout for the 2 code boxlayouts sitting # over a box layout containing all the control buttons.
 
 
-<AppController>
-	orientation: 'vertical'
+
+<AppController>:
+    orientation: 'vertical'
+    BoxLayout:
+    	orientation: 'horizontal'
+    	BoxLayout:
+			id: predefined_code
+
+			Label:
+				text: 'CODE BLOCKS'
+				size_hint: (1, .1)
+
+			
+	
+	    BoxLayout:
+    		id: user_code
+    		
+    		Label:
+    			text: 'USER PROGRAM'
+    			size_hint: (1, .1)
+
 	BoxLayout:
-		id: view_Container
-		size_hint = (1, .75)
+    	orientation: 'horizontal'
+    	id: buttons_Layout
+		size_hint: (1, .25)
 
 
 
-	Button:
-		id: save_Button
-		on_press: root.save_Button(student_Program)
+		Button:
+			id: save_Button
+			text: 'SAVE'
+			on_press: root.save_Button()
 
-	Button:
-		id: load_Button
-		on_press: root.load_Button()
+		Button:
+			id: load_Button
+			text: 'LOAD'
+			on_press: root.load_Button()
 
-	Button:
-		id: run_Button
-		on_Press: root.run_Button(student_Program)
+		Button:
+			id: run_Button
+			text: 'RUN'
+			on_press: root.run_Button()
 
-	Button:
-		id: debug_Button
-		on_Press: root.debug_Button(student_Program)
+		Button:
+			id: debug_Button
+			text: 'DEBUG'
+			on_press: root.debug_Button()
 
-	Button:
-		id: exit_Button
-		on_Press: exit()
+		Button:
+			id: exit_Button
+			text: 'EXIT'
+			on_press: exit()
 
-
-
-
-
+			
