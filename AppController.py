@@ -14,9 +14,10 @@ class AppController(BoxLayout):
 	import pdb; pdb.set_trace()
 
 
-	#def __init__(self):
-		#pass#current_View = code_View 
-		# return self
+	def __init__(self):
+		super(AppController, self).__init__()
+		# you should be able to run code here now
+		# current_View = code_View 
 	
 	def save_Button(self, student_Program):
 		self.text = 'not yet implemented'
