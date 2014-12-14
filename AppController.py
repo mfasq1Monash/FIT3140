@@ -14,8 +14,8 @@ class AppController(BoxLayout):
 	import pdb; pdb.set_trace()
 
 
-	def __init__(self):
-		pass#current_View = code_View 
+	#def __init__(self):
+		#pass#current_View = code_View 
 		# return self
 	
 	def save_Button(self, student_Program):
