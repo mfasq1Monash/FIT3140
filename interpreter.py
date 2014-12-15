@@ -23,7 +23,8 @@ class Procedure(object):
         self.interpreter = inter
 
     def __call__(self, *args):
-        return self.interpreter.evaluate(self.statements, Environment(self.parameters, args, self.environment))
+        return self.interpreter.evaluate(self.statements,
+                                         Environment(self.parameters, args, self.environment))
 
 class Environment(dict):
 
@@ -137,11 +138,11 @@ class Interpreter:
                 return
 
             elif method == 'move':
-                self.robotio.move(self.evaluate(x[1]))
+                self.robotio.move(self.evaluate(x[0]))
                 return
 
             elif method == 'turn':
-                self.robotio.turn(self.evaluate(x[1]))
+                self.robotio.turn(self.evaluate(x[0]))
                 return
 
             else:

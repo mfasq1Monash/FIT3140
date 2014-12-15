@@ -74,10 +74,10 @@ class AppController(BoxLayout):
 
 ''' used for testing of module to ensure working correctly '''
 
-##class testAppController(App):
-##    def build(self):
-##        
-##        return AppController()
-##
-##if __name__ == "__main__":
-##    testAppController().run()
+class testAppController(App):
+    def build(self):
+        
+        return AppController()
+
+if __name__ == "__main__":
+    testAppController().run()
