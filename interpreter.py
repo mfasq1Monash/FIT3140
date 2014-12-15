@@ -13,6 +13,14 @@ from robotio import RobotIO
 
 Symbol = str
 
+class VariableAlreadyPresentException(Exception):
+    pass
+class FunctionAlreadyDefinedException(Exception):
+    pass
+class VariableAlreadySetException(Exception):
+    pass
+
+
 class Procedure(object):
     """A user-defined method"""
     
@@ -42,7 +50,7 @@ class Environment(dict):
     def add_new(self, variable, value):
         """Adds a new definition to the environment. If the variable is already present, raises a KeyAlreadyPresentError"""
         if variable in self:
-            raise(VariableAlreadyPresentError)
+            raise(VariableAlreadyPresentException)
         self[variable] = value
 
 class Interpreter:
@@ -118,8 +126,8 @@ class Interpreter:
             if method == 'define':
                 try:
                     self.global_environment.add_new(x[0], Procedure(x[1], x[2], env, self))    
-                except VariableAlreadyPresentError:
-                    raise FunctionAlreadyDefinedError
+                except VariableAlreadyPresentException:
+                    raise FunctionAlreadyDefinedException
                     
             elif method == 'if':
                 # If statement. [Test, consequences, alternative]
@@ -129,9 +137,9 @@ class Interpreter:
 
             elif method == 'set':
                 try:
-                    env.add_new(x[0], evaluate(x[1],env))
-                except VariableAlreadyPresentError:
-                    raise VariableAlreadySetError
+                    env.add_new(x[0], self.evaluate(x[1],env))
+                except VariableAlreadyPresentException:
+                    raise VariableAlreadySetException
                 return
 
             elif method == 'comment':
