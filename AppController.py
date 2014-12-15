@@ -37,9 +37,6 @@ class AppController(BoxLayout):
 
 	def __init__(self):
  	 	super(AppController, self).__init__()
-
- 	 	'''  need to implement calling 2 code view's one for pre 
- 	 	defined code blocks and the other for user generated code '''  
 		# self.ids.predefined_code.add_widget(FunctionList(self.commands))
 
 		# for command in self.commands:
@@ -77,10 +74,10 @@ class AppController(BoxLayout):
 
 ''' used for testing of module to ensure working correctly '''
 
-class runAppController(App):
-    def build(self):
-        
-        return AppController()
-
-if __name__ == "__main__":
-    runAppController().run()
+##class testAppController(App):
+##    def build(self):
+##        
+##        return AppController()
+##
+##if __name__ == "__main__":
+##    testAppController().run()
