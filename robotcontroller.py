@@ -2,7 +2,7 @@ from interpreter import Interpreter
 from robotio import RobotIO
 from codeblock import CodeBlock
 
-class Controller():
+class RobotController():
     """A block with an associated function and some number of text
     input arguments"""
 
