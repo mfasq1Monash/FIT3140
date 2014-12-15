@@ -22,15 +22,17 @@ class FunctionList(BoxLayout):
 
 	def __init__(self, theList):
 		super(FunctionList, self).__init__
-		layout = ListView(item_strings = theList)
-		theCode = self.ids.code_List
-		theCode.add_widget(layout)
+		
+		for i in range(len(theList)):
+			self.add_widget(Button(text=theList[i]))
+
 
 
 
 class testFunctionList(App):
     def build(self):
-        return FunctionList()
+    	
+        return FunctionList(['+ 4 5', '- 3 5', 'define x TRUE', 'if x 5'])
 
 if __name__ == '__main__':
     testFunctionList().run()
