@@ -10,6 +10,7 @@ takes a list of strings and converts them into dragable objects.
 ***  still need to implement drag and drop and display of draggable code blocks  ***   
 
 '''
+from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
 from kivy.uix.listview import ListView
@@ -24,3 +25,13 @@ class FunctionList(BoxLayout):
 		layout = ListView(item_strings = theList)
 		theCode = self.ids.code_List
 		theCode.add_widget(layout)
+
+
+
+class testFunctionList(App):
+    def build(self):
+        return FunctionList()
+
+if __name__ == '__main__':
+    testFunctionList().run()
+
