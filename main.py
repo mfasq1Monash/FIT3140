@@ -1,3 +1,13 @@
+'''
+# Author:        Aaron Gruneklee, Michael Asquith
+# Created:       2014.12.08
+# Last Modified: 2014.12.15
+
+this is the main controler class it is responsible for displaying the 3 views and
+controls the 5 input buttons.
+
+'''
+
 from kivy import require
 from kivy.app import App
 from kivy.uix.widget import Widget
