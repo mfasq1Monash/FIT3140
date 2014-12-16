@@ -25,8 +25,8 @@ class FunctionList(BoxLayout):
 	def __init__(self, theList):
 		super(FunctionList, self).__init__()
 
-		# self.scroll_type = ['content', 'bars']
-		# self.bar_width='9dp'
+		self.scroll_type = ['content', 'bars']
+		self.bar_width='9dp'
 		code_window = GridLayout(cols=1, size_hint=(1, None))
 		code_window.bind(minimum_height=code_window.setter('height'),)
 
@@ -36,6 +36,13 @@ class FunctionList(BoxLayout):
 		self.add_widget(code_window)
 
 
+	def insertInstruction(self, name, instruction):
+		self.code_window.add_widget(Button(text=name, size_hint=(1,None),height=40))
+
+	def removeInstruction(self, name):
+		error('not yet implemented')
+
+	
 
 
 class testFunctionList(App):
