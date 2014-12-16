@@ -1,10 +1,10 @@
 '''
 Author: Michael Asquith
 Created: 2014.12.08
-Last Modified: 2014.12.12
+Last Modified: 2014.12.15
 
 Interpreter for a simple functional programming language.
-Access with execute(command)
+Access with interpret(command)
 
 Based on Peter Norig's Lispy interpreter, http://norvig.com/lispy.html
 '''
@@ -117,12 +117,15 @@ class Interpreter:
         env.update({
             '+':op.add, '-':op.sub, '*':op.mul, '/':op.div, '%': op.mod,
             '>':op.gt, '<':op.lt, '>=':op.ge, '<=':op.le, '=':op.eq,
-            'and':      lambda x,y: x and y,
-            'or':       lambda x,y: x or y,
-            'not':      lambda x: not x,
-            'comment':  lambda: None,
-            'move':     lambda x: self.robotio.move(x),
-            'turn':     lambda x: self.robotio.turn(x)
+            'define':None, 'if':None, 'set':None,
+            'and':           lambda x,y: x and y,
+            'or':            lambda x,y: x or y,
+            'not':           lambda x: not x,
+            'comment':       lambda: None,
+            'move':          lambda x: self.robotio.move(x),
+            'turn':          lambda x: self.robotio.turn(x),
+            'detect-wall':   lambda x: self.robotio.detect_wall()
+            'detect-goal':   lambda x: self.robotio.detect_goal()
         })
         
         return env
