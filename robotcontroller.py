@@ -1,6 +1,6 @@
 '''
 Author: Michael Asquith, Aaron Gruneklee
-Created: 2014.12.08
+Created: 2014.12.12
 Last Modified: 2014.12.15
 
 The brain of the robot. Has access to the robot's I/O, interpreter and

@@ -1,5 +1,13 @@
-"""A hard coded maze. It has a start location S (and facing South, a goal G,
-and can return whether a given square is a wall."""
+'''
+# Author:        Michael Asquith
+# Created:       2014.12.12
+# Last Modified: 2014.12.15
+
+A hard coded maze. It has a start location S (and facing South, a goal G,
+and can return whether a given square is a wall. All spaces outside the maze
+borders are considered walls.
+
+'''
 
 class Maze:
 
