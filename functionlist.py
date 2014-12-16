@@ -18,7 +18,7 @@ from kivy.properties import ObjectProperty
 from kivy.uix.scrollview import ScrollView
 from kivy.uix.gridlayout import GridLayout
 
-class FunctionList(BoxLayout):
+class FunctionList(ScrollView):
 
 	code_List = ObjectProperty(None)
 
@@ -35,10 +35,11 @@ class FunctionList(BoxLayout):
 		
 		self.add_widget(code_window)
 
-
+	''' insert an instruction into the scrollable list '''
 	def insertInstruction(self, name, instruction):
 		self.code_window.add_widget(Button(text=name, size_hint=(1,None),height=40))
 
+	''' remove an instruction from the scrollable list '''
 	def removeInstruction(self, name):
 		error('not yet implemented')
 
