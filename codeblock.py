@@ -13,43 +13,59 @@ from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.textinput import TextInput
 from kivy.uix.button import Button
-from kivy.properties import ListProperty, ObjectProperty
+from kivy.properties import ListProperty, ObjectProperty, BooleanProperty
+from kivy.uix.label import Label
+from kivy.uix.gridlayout import GridLayout
+from copy import copy
 
-class CodeBlock(BoxLayout):
+class CodeBlock(GridLayout):
     """A block with an associated function and some number of text
     input arguments"""
-    name = ''
-    parameters = ['']
-    def __init__(self, name, numberOfParameters):
+    dragged = BooleanProperty(False)
+
+    def __init__(self, name):
         super(CodeBlock, self).__init__()
         
-        self.name = name
-        self.parameters = ['']*numberOfParameters
-        # self.ids.code_button.text = self.name
-        # block = self.ids.root
-        # for argument in self.parameters:
-        #     block.add_widget(TextInput())
+        code = name
+        parameters = code.replace('(', '( ').replace(')', ' )').split()
+        self.cols = len(parameters)
+        for param in parameters:
+            self.add_widget(primaryBlock(param))
+            
 
-    def numberOfParameters(self):
-        return len(self.parameters)
-        
-    def setParameter(self, parameterNum, parameter):
-        self.parameter[parameterNum] = parameter
+    def on_touch_down(self, touch):
+        if self.collide_point(touch.x, touch.y):
+            self.dragged = True
+    
+    def on_touch_move(self, touch):
+        if self.dragged:
+            self.center_x = touch.x
+            self.center_y = touch.y
 
-    def __str__(self):
-        
-        string = '(' + self.name
-        for argument in self.parameters:
-            string += ' ' + str(argument)
-        string += ')'
-        return string
+    def on_touch_up(self, touch):
+        if self.dragged:
+            self.selected = False
+
+
+class primaryBlock(BoxLayout):
+    def __init__(self, typeValue):
+        super(BoxLayout, self).__init__()
+        self.ids.size_hint = (1,1)
+        # if str(typeValue).capitalize == 'X' or 'Y':
+        #     box = TextInput(text= 'enter value or drag code block', size_hint=(.3,1))
+        #     # box.bind(on_) need to bind to a method to accept value or a codeBlock
+        #     self.add_widget(box)
+
+        # else:
+        box = Label(text=typeValue, size=(30,40))
+        self.add_widget(box)
+
 
 
 class testCodeBlock(App):
     def build(self):
         
-        return CodeBlock('test', 2)
-
+        return CodeBlock('(add 5 5)')
 
 
 if __name__ == "__main__":
