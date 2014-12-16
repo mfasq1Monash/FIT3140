@@ -43,7 +43,7 @@ class FunctionalProgrammerWidget(BoxLayout):
             # self.ids.predefined_code.add_widget(FunctionList(self.commands))
 
             self.ids.predefined_code.add_widget(FunctionList(['this',
-                'is','a','test']))
+                'is','a','test', 'what', 'does', 'this', 'do?']))
             # for command in self.commands:
     #  		cmd = command.split()
     #  		self.cmnds = self.ids.predefined_code.add_widget(FunctionList())
