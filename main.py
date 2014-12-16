@@ -26,7 +26,7 @@ class FunctionalProgrammerWidget(BoxLayout):
     # set all the properties of the Controller
 
     text_colour = ListProperty([1, 0, 0, 1])	
-    commands = []
+    
     student_Program = ObjectProperty(None)
     code_View = ObjectProperty(None)
     run_View = ObjectProperty(None)
@@ -42,10 +42,10 @@ class FunctionalProgrammerWidget(BoxLayout):
             super(FunctionalProgrammerWidget, self).__init__()
             
             precode = open('function_file', 'r+')
-            
+            commands = []
             for line in precode:
-                self.commands.append(line)
-            self.ids.predefined_code.add_widget(FunctionList(self.commands))
+                commands.append(line)
+            self.ids.predefined_code.add_widget(FunctionList(commands))
 
             self.ids.user_code.add_widget(FunctionList([]))
           
