@@ -14,7 +14,6 @@ from kivy.uix.widget import Widget
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
 from kivy.properties import ListProperty, ObjectProperty
-
 from codeblock import CodeBlock
 from functionlist import FunctionList
 
@@ -43,6 +42,8 @@ class FunctionalProgrammerWidget(BoxLayout):
             super(FunctionalProgrammerWidget, self).__init__()
             # self.ids.predefined_code.add_widget(FunctionList(self.commands))
 
+            self.ids.predefined_code.add_widget(FunctionList(['this',
+                'is','a','test']))
             # for command in self.commands:
     #  		cmd = command.split()
     #  		self.cmnds = self.ids.predefined_code.add_widget(FunctionList())
