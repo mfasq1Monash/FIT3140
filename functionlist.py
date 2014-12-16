@@ -18,19 +18,20 @@ from kivy.properties import ObjectProperty
 from kivy.uix.scrollview import ScrollView
 from kivy.uix.gridlayout import GridLayout
 
-class FunctionList(ScrollView):
+class FunctionList(BoxLayout):
 
 	code_List = ObjectProperty(None)
 
 	def __init__(self, theList):
 		super(FunctionList, self).__init__()
-		self.scroll_type = ['content', 'bars']
-		self.bar_width='9dp'
-		code_window = GridLayout(cols=1, size_hint=(None, None))
-		code_window.bind(minimum_height=code_window.setter('height'))
+
+		# self.scroll_type = ['content', 'bars']
+		# self.bar_width='9dp'
+		code_window = GridLayout(cols=1, size_hint=(1, None))
+		code_window.bind(minimum_height=code_window.setter('height'),)
 
 		for i in range(len(theList)):
-			code_window.add_widget(Button(text=theList[i], size_hint=(None, None),height=40))
+			code_window.add_widget(Button(text=theList[i], size_hint=(1, None),height=40))
 		
 		self.add_widget(code_window)
 
