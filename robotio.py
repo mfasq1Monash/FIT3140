@@ -28,11 +28,11 @@ class RobotIO:
     def move(self, n):
         vector = self.facing.getVector()
         for i in range(n):
-            if check_wall(vector, 1):
+            if self.check_wall(vector, 1):
                 raise WallHitError
             else:
-                (self.xcoord, self.ycoord) = (self.xcoord + self.ycoord)
-                + vector
+                self.xcoord += vector[0]
+                self.ycoord += vector[1]
 
     def turn(self, n):
         self.facing = self.facing.turn(n)

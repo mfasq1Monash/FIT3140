@@ -25,7 +25,7 @@ class Maze:
 
     def isWall(self, xcoord, ycoord):
         if( xcoord < 0 or ycoord < 0 or
-            xcoord >= xdimension or ycoord >= ydimension):
+            xcoord >= self.xdimension or ycoord >= self.ydimension):
             return True
         if self.grid[ycoord][xcoord] == 1:
             return True

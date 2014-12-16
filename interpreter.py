@@ -22,7 +22,7 @@ class VariableAlreadySetException(Exception):
 
 
 class Procedure(object):
-    """A user-defined method"""
+    """A user-defined method for the interpreter"""
     
     def __init__(self, parms, stats, env, inter):
         self.parameters = parms
@@ -31,10 +31,11 @@ class Procedure(object):
         self.interpreter = inter
 
     def __call__(self, *args):
-        return self.interpreter.evaluate(self.statements,
-                                         Environment(self.parameters, args, self.environment))
+        localVariables = Environment(self.parameters, args, self.environment)
+        return self.interpreter.evaluate(self.statements, localVariables)
 
 class Environment(dict):
+    """A set of variables for the interpreter or a method within it."""
 
     def __init__(self, parms=(), expressions=(), outer=None):
         """When evaluating, procedures will pass in their parameters"""
@@ -54,13 +55,22 @@ class Environment(dict):
         self[variable] = value
 
 class Interpreter:
+    """After initialising an interpreter, run expressions by calling interpret.
+    """
 
-    def __init__(self, newrobotio):
+    def __init__(self, newRobotIO):
+        """Creates an interpreter with standard math operations and variables.
+        Can send input/output to newRobotIO
+        """
         self.global_environment = self.standard_environment()
-        self.robotio = newrobotio
+        self.robotio = newRobotIO
 
     def interpret(self, code):
-        "Interprets and executes code."
+        """Parses and executes code a string in the form of:
+        (method_name argument1 argument2)
+        Arguments which are expressions must be placed in brackets.
+        Arguments which are not expressions must not be placed in brackets.
+        """
         return self.evaluate(self.parse(code))
 
     def parse(self, code):
@@ -107,9 +117,12 @@ class Interpreter:
         env.update({
             '+':op.add, '-':op.sub, '*':op.mul, '/':op.div, '%': op.mod,
             '>':op.gt, '<':op.lt, '>=':op.ge, '<=':op.le, '=':op.eq,
-            'and':  lambda x,y: x and y,
-            'or':   lambda x,y: x or y,
-            'not':  lambda x: not x
+            'and':      lambda x,y: x and y,
+            'or':       lambda x,y: x or y,
+            'not':      lambda x: not x,
+            'comment':  lambda: None,
+            'move':     lambda x: self.robotio.move(x),
+            'turn':     lambda x: self.robotio.turn(x)
         })
         
         return env
@@ -119,22 +132,24 @@ class Interpreter:
         if env == None:
             env = self.global_environment
         
-        #If x is a list, must be evaluating a method
+        # If x is a list, must be evaluating a method
         if isinstance(x, list):
             method = x.pop(0)
-                    
+
+            # Defines a function
             if method == 'define':
                 try:
                     self.global_environment.add_new(x[0], Procedure(x[1], x[2], env, self))    
                 except VariableAlreadyPresentException:
                     raise FunctionAlreadyDefinedException
-                    
+
+            # If statement. [Test, consequences, alternative]     
             elif method == 'if':
-                # If statement. [Test, consequences, alternative]
                 if self.evaluate(x[0]):
                     return self.evaluate(x[1])
                 return self.evaluate(x[2])
 
+            # Sets a variable
             elif method == 'set':
                 try:
                     env.add_new(x[0], self.evaluate(x[1],env))
@@ -142,17 +157,7 @@ class Interpreter:
                     raise VariableAlreadySetException
                 return
 
-            elif method == 'comment':
-                return
-
-            elif method == 'move':
-                self.robotio.move(self.evaluate(x[0]))
-                return
-
-            elif method == 'turn':
-                self.robotio.turn(self.evaluate(x[0]))
-                return
-
+            # Executes all other functions
             else:
                 method = self.evaluate(method, self.global_environment)
                 args = [self.evaluate(variable, env) for variable in x]
