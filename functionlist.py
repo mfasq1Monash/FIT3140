@@ -30,7 +30,7 @@ class FunctionList(ScrollView):
 		code_window.bind(minimum_height=code_window.setter('height'))
 
 		for i in range(len(theList)):
-			code_window.add_widget(Button(text=theList[i], size_hint=(1, None),height=50))
+			code_window.add_widget(Button(text=theList[i], size_hint=(None, None),height=40))
 		
 		self.add_widget(code_window)
 
