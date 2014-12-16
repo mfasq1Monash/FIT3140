@@ -16,18 +16,21 @@
     	BoxLayout:
 			id: predefined_code
 
-		#	Label:
-		#		text: 'CODE BLOCKS'
-		#		size_hint: (1, .1)
-
-			
-	
+		
 	    BoxLayout:
     		id: user_code
-    		
-    		Label:
-    			text: 'USER PROGRAM'
-    			size_hint: (1, .1)
+    BoxLayout:
+    	id: labels_view
+    	orientation: 'horizontal'	
+    	size_hint: (1, .1)
+
+    	Label:
+			text: 'CODE BLOCKS'
+			size_hint: (1, 1)
+
+    	Label:
+    		text: 'USER PROGRAM'
+    		size_hint: (1, 1)
 
 	BoxLayout:
     	orientation: 'horizontal'
