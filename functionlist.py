@@ -21,10 +21,12 @@ class FunctionList(BoxLayout):
 	code_List = ObjectProperty(None)
 
 	def __init__(self, theList):
-		super(FunctionList, self).__init__
-		self.code_List = 	
+		super(FunctionList, self).__init__()
+		# self.code_List = 
 		for i in range(len(theList)):
 			self.add_widget(Button(text=theList[i]))
+
+
 
 
 
