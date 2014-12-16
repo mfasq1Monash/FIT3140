@@ -47,7 +47,7 @@ class FunctionalProgrammerWidget(BoxLayout):
                 self.commands.append(line)
             self.ids.predefined_code.add_widget(FunctionList(self.commands))
 
-            self.ids.user_code.add_widget(FunctionList([]))
+            # self.ids.user_code.add_widget(FunctionList([]))
             # for command in self.commands:
     #  		cmd = command.split()
     #  		self.cmnds = self.ids.predefined_code.add_widget(FunctionList())
