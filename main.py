@@ -40,20 +40,15 @@ class FunctionalProgrammerWidget(BoxLayout):
 
     def __init__(self):
             super(FunctionalProgrammerWidget, self).__init__()
-            # self.ids.predefined_code.add_widget(FunctionList(self.commands))
+            
             precode = open('function_file', 'r+')
             
             for line in precode:
                 self.commands.append(line)
             self.ids.predefined_code.add_widget(FunctionList(self.commands))
 
-            # self.ids.user_code.add_widget(FunctionList([]))
-            # for command in self.commands:
-    #  		cmd = command.split()
-    #  		self.cmnds = self.ids.predefined_code.add_widget(FunctionList())
-    #  		cmnds.append(cmd[0])
-
-                    # self.ids.predefined_code.add_widget(CodeBlock(cmd[0], len(cmd) - 1))
+            self.ids.user_code.add_widget(FunctionList([]))
+          
 
 
     ''' saves user program to user defined location '''
@@ -63,7 +58,7 @@ class FunctionalProgrammerWidget(BoxLayout):
 
     ''' loads a user program from a user defined location '''
     def load_Button(self):
-            self.ids.load_Button.text = 'not yet implemented'
+        self.ids.run_Button.text = 'not yet implemented'
                     
 
     ''' displays maze and robot traversing through the maze '''
