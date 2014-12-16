@@ -42,7 +42,7 @@ class RobotIO:
 
     def move(self, n):
         """Attempt to move n spaces in the robot's current direction.
-        If a wall is hit it will
+        Cannot move into a space with a wall in it.
         """
         vector = self.facing.getVector()
         for i in range(n):
@@ -54,7 +54,7 @@ class RobotIO:
 
     def turn(self, n):
         """Make n 90 degree clockwise turns."""
-        self.facing = self.facing.turn(n)
+        self.facing.turn(n)
 
     def check_wall(self, unitvector, distance):
         """Checks if there is a wall *distance* in the direction *unitvector*"""
@@ -73,3 +73,48 @@ class RobotIO:
 
     def detect_goal(self, detectRange):
         raise NotImplementedError
+
+if __name__ == '__main__':
+    robot = RobotIO()
+    failed_tests = []
+
+    # Move and turn
+    tests = [
+        ['m', 0, 'Control',                  4,0,'South'],
+        ['m', 2, 'Moving South',             4,2,'South'],
+        ['t', 1, 'Turning once',             4,2,'West'],
+        ['m', 1, 'Moving West',              3,2,'West'],
+        ['t', 2, 'Turning twice',            3,2,'East'],
+        ['m', 1, 'Moving East',              4,2,'East'],
+        ['m', 2, 'Moving into a wall',       4,2,'East'],
+        ['t', 3, 'Turning thrice',           4,2,'North'],
+        ['m', 6, 'Moving to the maze edge',  4,0,'North']]
+
+    for i in range(len(tests)):
+        curr = tests[i]
+        if curr[0] == 'm':
+            robot.move(curr[1])
+            result = [robot.xcoord, robot.ycoord]
+            if result != tests[i][3:5]:
+                failed_tests.append(curr)
+        if curr[0] == 't':
+            robot.turn(curr[1])
+            result = robot.facing.name
+            if result != tests[i][-1]:
+                failed_tests.append(curr)
+                
+        print "Test ", i
+        print curr[0], "should return", curr[3:], "\n", result 
+        print
+
+    if failed_tests: print "failed tests are:"
+    else: print "turn and move pass"
+    for i in range(len(failed_tests)):
+        print "Test ", i, " ", failed_tests[i]
+    raw_input()
+        
+
+    # Detect Wall
+
+    # Detect Goal
+        
