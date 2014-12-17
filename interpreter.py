@@ -19,6 +19,8 @@ class FunctionAlreadyDefinedException(Exception):
     pass
 class VariableAlreadySetException(Exception):
     pass
+class VariableNotFoundException(Exception):
+    pass
 
 
 class Procedure(object):
@@ -46,7 +48,10 @@ class Environment(dict):
         """Returns the lowest level Environment which has variable"""
         if variable in self:
             return self
-        return self.outer.find(variable)
+        try:
+            return self.outer.find(variable)
+        except AttributeError:
+            raise VariableNotFoundException
         
     def add_new(self, variable, value):
         """Adds a new definition to the environment. If the variable is already present, raises a KeyAlreadyPresentError"""
@@ -124,7 +129,7 @@ class Interpreter:
             'comment':       lambda: None,
             'move':          lambda x: self.robotio.move(x),
             'turn':          lambda x: self.robotio.turn(x),
-            'detect-wall':   lambda x: self.robotio.detect_wall()
+            'detect-wall':   lambda x: self.robotio.detect_wall(),
             'detect-goal':   lambda x: self.robotio.detect_goal()
         })
         
