@@ -6,7 +6,7 @@ Last Modified: 2014.12.15
 Interpreter for a simple functional programming language.
 Access with interpret(command)
 
-Based on Peter Norig's Lispy interpreter, http://norvig.com/lispy.html
+Based on Peter Norvig's Lispy interpreter, http://norvig.com/lispy.html
 '''
 import math, operator as op
 from robotio import RobotIO
@@ -102,9 +102,9 @@ class Interpreter:
         try:
             return int(token)
         except ValueError:
-                if token == 'true':
+                if token.lower() == 'true':
                     return True
-                elif token == 'false':
+                elif token.lower() == 'false':
                     return False
                 else:
                     return Symbol(token)
