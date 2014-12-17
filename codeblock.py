@@ -37,7 +37,7 @@ class CodeBlock(GridLayout):
         parameters = name.replace('(', '( ').replace(')', ' )').split()
         self.cols = len(parameters)
         for param in parameters:
-            layout.add_widget(PrimaryBlock(param, app=self, size_hint=(None,None), size=(60,80)))
+            layout.add_widget(PrimaryBlock(param))
 
         self.add_widget(layout)
             
@@ -47,7 +47,7 @@ class CodeBlock(GridLayout):
 
 ''' a primary block is the base level for the display of the users code '''
 
-class PrimaryBlock(Button):
+class PrimaryBlock(BoxLayout):
     dragged = BooleanProperty(False)
     app = ObjectProperty(None)
     def __init__(self, typeValue):
@@ -55,7 +55,7 @@ class PrimaryBlock(Button):
         self.ids.size_hint = (None,None)
         if str(typeValue).capitalize in ['X','Y', 'Z']:
             box = TextInput(text= 'enter value or drag code block', size_hint=(.3,1))
-            # box.bind(on_) need to bind to a method to accept value or a codeBlock
+            
             self.add_widget(box)
 
         else:
