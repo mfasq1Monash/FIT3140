@@ -11,3 +11,38 @@ this forms the display of the user code
 
 '''
 
+from kivy.app import App
+from kivy.uix.treeview import TreeView, TreeViewNode
+from kivy.uix.gridlayout import GridLayout
+
+
+class userCodeDisplay(GridLayout):
+
+	def __init__(self):
+		
+
+
+
+class treeViewTextInput(textInput, TreeViewNode):
+	super(treeViewWidget, self).__init__()
+
+
+	def on_textinput(self):
+		
+
+
+
+
+
+class testUserCodeDisplay(App):
+
+	def test_tree_display(s):
+		tree_code = '(/ (+, 3, y), 9) '
+        display_tree(tree_code)
+
+    def build(self):
+    	return userCodeDisplay()
+
+
+if__name__ == '__main__':
+	testUserCodeDisplay().run()
