@@ -73,6 +73,11 @@ class RobotIO:
 
     def detect_goal(self, detectRange):
         raise NotImplementedError
+##        for i in range(-detectRange, detectRange+1):
+##            for j in range(-detectRange, detectRange+1):
+##                if self.maze.isWall(xcoord + i, ycoord + j):
+##                    return (abs(i) + abs(j), 
+                
 
     def getLocationFacing(self):
         """Used by interpretertest.py. Returns the robot's location and direction"""
