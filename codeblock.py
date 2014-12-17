@@ -17,7 +17,7 @@ from kivy.properties import ListProperty, ObjectProperty, BooleanProperty
 from kivy.uix.label import Label
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.widget import Widget
-from kivy.garden.magnet import Magnet
+# from kivy.garden.magnet import Magnet
 
 
 
@@ -37,7 +37,7 @@ class CodeBlock(GridLayout):
         parameters = name.replace('(', '( ').replace(')', ' )').split()
         self.cols = len(parameters)
         for param in parameters:
-            layout.add_widget(primaryBlock(param, app=self, size_hint=(None,None), size=(60,80)))
+            layout.add_widget(PrimaryBlock(param, app=self, size_hint=(None,None), size=(60,80)))
 
         self.add_widget(layout)
             
@@ -47,10 +47,11 @@ class CodeBlock(GridLayout):
 
 ''' a primary block is the base level for the display of the users code '''
 
-class primaryBlock(Magnet):
+class PrimaryBlock(Button):
     dragged = BooleanProperty(False)
+    app = ObjectProperty(None)
     def __init__(self, typeValue):
-        super(primaryBlock, self).__init__()
+        super(PrimaryBlock, self).__init__()
         self.ids.size_hint = (None,None)
         if str(typeValue).capitalize in ['X','Y', 'Z']:
             box = TextInput(text= 'enter value or drag code block', size_hint=(.3,1))
@@ -63,64 +64,7 @@ class primaryBlock(Magnet):
             self.add_widget(box)
 
 
-    def on_touch_down(self, touch, *args):
-        if self.collide_point(*touch.pos):
-            touch.grab(self)
-            self.remove_widget(self)
-
-            self.app.root.add_widget(self)
-            self.center = touch.pos
-            self.img.center = touch.pos
-            return True
- 
-        return super(primaryBlock, self).on_touch_down(touch, *args)
- 
-    def on_touch_move(self, touch, *args):
-        grid_layout = self.app.root.ids.grid_layout
-        float_layout = self.app.root.ids.float_layout
- 
-        if touch.grab_current == self:
-            self.img.center = touch.pos
-            if grid_layout.collide_point(*touch.pos):
-                grid_layout.remove_widget(self)
-                float_layout.remove_widget(self)
- 
-                for i, c in enumerate(grid_layout.children):
-                    if c.collide_point(*touch.pos):
-                        grid_layout.add_widget(self, i - 1)
-                        break
-                else:
-                    grid_layout.add_widget(self)
-            else:
-                if self.parent == grid_layout:
-                    grid_layout.remove_widget(self)
-                    float_layout.add_widget(self)
- 
-                self.center = touch.pos
- 
-        return super(primaryBlock, self).on_touch_move(touch, *args)
- 
-    def on_touch_up(self, touch, *args):
-        if touch.grab_current == self:
-            self.app.root.remove_widget(self.img)
-            self.add_widget(self.img)
-            touch.ungrab(self)
-            return True
- 
-        return super(primaryBlock, self).on_touch_up(touch, *args)
-
-    # def on_touch_down(self, touch):
-    #     if self.collide_point(touch.x, touch.y):
-    #         self.dragged = True
     
-    # def on_touch_move(self, touch):
-    #     if self.dragged:
-    #         self.center_x = touch.x
-    #         self.center_y = touch.y
-
-    # def on_touch_up(self, touch):
-    #     if self.dragged:
-    #         self.dragged = False
 
 
 
