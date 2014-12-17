@@ -120,13 +120,13 @@ class Interpreter:
         env = Environment()
         env.update(vars(math))
         env.update({
-            '+':op.add, '-':op.sub, '*':op.mul, '/':op.div, '%': op.mod,
+            '+':op.add, '-':op.sub, '*':op.mul, '/':op.div,
             '>':op.gt, '<':op.lt, '>=':op.ge, '<=':op.le, '=':op.eq,
-            'define':None, 'if':None, 'set':None,
+            'define':None, 'if':None, 'set':None, 'comment':None,
+            '%':             lambda x,y: abs(x % y),
             'and':           lambda x,y: x and y,
             'or':            lambda x,y: x or y,
             'not':           lambda x: not x,
-            'comment':       lambda: None,
             'move':          lambda x: self.robotio.move(x),
             'turn':          lambda x: self.robotio.turn(x),
             'detect-wall':   lambda x: self.robotio.detect_wall(x),
@@ -163,6 +163,9 @@ class Interpreter:
                     env.add_new(x[0], self.evaluate(x[1],env))
                 except VariableAlreadyPresentException:
                     raise VariableAlreadySetException
+                return
+
+            elif method == 'comment':
                 return
 
             # Executes all other functions

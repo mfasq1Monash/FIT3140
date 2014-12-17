@@ -34,51 +34,46 @@ class InterpreterTest(unittest.TestCase):
         self.assertEqual(self.inter.interpret('(and true true)'),True)
         self.assertEqual(self.inter.interpret('(and true false)'),False)
         self.assertEqual(self.inter.interpret('(and false false)'),False)
-        #self.assertRaises(TypeError,self.inter.interpret,'(and true 3)')
 
     def test_or(self):
         # boolean OR
         self.assertEqual(self.inter.interpret('(or true false)'),True)
         self.assertEqual(self.inter.interpret('(or false false)'),False)
         self.assertEqual(self.inter.interpret('(or true true)'),True)
-        #self.assertRaises(TypeError,self.inter.interpret,'(or true 4)')
 
     def test_not(self):
         # boolean NOT
         self.assertEqual(self.inter.interpret('(not true)'),False)
         self.assertEqual(self.inter.interpret('(not false)'),True)
-        #self.assertRaises(TypeError,self.inter.interpret,'(not 2)')
 
     def test_if(self):
         # boolean IF
         self.assertEqual(self.inter.interpret('(if true 100 -50)'),100)
         self.assertEqual(self.inter.interpret('(if false 100 -50)'),-50)
-        #self.assertRaises(TypeError,self.inter.interpret,'(if 3 100 -50)')
 
     def test_plus(self):
         # integer plus
         self.assertEqual(self.inter.interpret('(+ 16 9)'),25)
         self.assertEqual(self.inter.interpret('(+ -1000 34)'),-966)
-        #self.assertRaises(TypeError,self.inter.interpret,'(+ true 3)')
 
     def test_minus(self):
         # integer minus
         self.assertEqual(self.inter.interpret('(- 16 9)'),7)
         self.assertEqual(self.inter.interpret('(- 34 -1000)'),1034)
-        #self.assertRaises(TypeError,self.inter.interpret,'(- true 3)')
 
 
     def test_multiply(self):
         # integer multiply
         self.assertEqual(self.inter.interpret('(* 16 9)'),144)
         self.assertEqual(self.inter.interpret('(* 34 -1000)'),-34000)
-        #self.assertRaises(TypeError,self.inter.interpret,'(* true 3)')
 
     def test_divide(self):
         # integer divide 
         self.assertEqual(self.inter.interpret('(/ 16 8)'),2)
         self.assertEqual(self.inter.interpret('(/ 1000 35)'),28)
-        #self.assertRaises(TypeError,self.inter.interpret,'(/ true 3)')
+
+        # divide by zero
+        self.assertRaises(ZeroDivisionError,self.inter.interpret,('(/ 2 0)'))
 
     def test_set(self):
         # setting variable to a number
@@ -134,8 +129,45 @@ class InterpreterTest(unittest.TestCase):
     def test_detectgoal(self):
         # robot will detect goal
         raise NotImplementedError
-    
-    
+
+    def test_equality(self):
+        # integer equality
+        self.assertEqual(True, self.inter.interpret('(= 3 3)'))
+        self.assertEqual(False, self.inter.interpret('(= 3 4)'))
+
+    def test_inequalities(self):
+        # integer less than
+        self.assertEqual(True, self.inter.interpret('(< 2 6)'))
+        self.assertEqual(False, self.inter.interpret('(< 6 2)'))
+        
+        # integer greater than
+        self.assertEqual(False, self.inter.interpret('(> 2 6)'))
+        self.assertEqual(True, self.inter.interpret('(> 6 2)'))
+
+        # integer less than or equal
+        self.assertEqual(True, self.inter.interpret('(<= 2 6)'))
+        self.assertEqual(False, self.inter.interpret('(<= 6 2)'))
+        self.assertEqual(True, self.inter.interpret('(<= 2 2)'))
+
+        # integer greater than or equal
+        self.assertEqual(False, self.inter.interpret('(>= 2 6)'))
+        self.assertEqual(True, self.inter.interpret('(>= 6 2)'))
+        self.assertEqual(True, self.inter.interpret('(>= 2 2)'))
+
+    def test_comment(self):
+        # comment should return None
+        self.assertEqual(None, self.inter.interpret('(comment (run away!))'))
+        
+    def test_modulus(self):
+        # integer modulus
+        self.assertEqual(2, self.inter.interpret('(% 17 5)'))
+        self.assertEqual(3, self.inter.interpret('(% 2 -5)'))
+        self.assertEqual(4, self.inter.interpret('(% -1 5)'))
+
+        # n modulo 0 is impossible
+        self.assertRaises(ZeroDivisionError,self.inter.interpret,('(% 2 0)'))
+
+        
 if __name__ == '__main__':
     suite = unittest.TestLoader().loadTestsFromTestCase(InterpreterTest)
     unittest.TextTestRunner(verbosity=2).run(suite)
