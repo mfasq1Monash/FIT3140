@@ -24,7 +24,7 @@ class PreCodeButton(Button):
 		super(PreCodeButton, self).__init__(size_hint=(1,None))
 		self.text = text
 		parameters = text.replace('(', '( ').replace(')', ' )').split()
-
+		
 		for param in parameters:
 			self.code_Blocks.append(PrimaryBlock(param))
 
@@ -41,8 +41,9 @@ class PreCodeButton(Button):
 			self.center = touch.pos
 
 	def on_touch_up(self, touch, *args):
-		self.pos = (self.previous_x, self.previous_y)
-		touch.ungrab(self)
+		if touch.grab_current == self:
+			self.pos = (self.previous_x, self.previous_y)
+			touch.ungrab(self)
 		# need to add primaryblocks to user code window
 
 class TestPreCodeButton(App):
