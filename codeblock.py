@@ -37,7 +37,7 @@ class CodeBlock(GridLayout):
         parameters = name.replace('(', '( ').replace(')', ' )').split()
         self.cols = len(parameters)
         for param in parameters:
-            layout.add_widget(primaryBlock(param))
+            layout.add_widget(primaryBlock(param, app=self, size_hint=(None,None), size=(60,80)))
 
         self.add_widget(layout)
             
