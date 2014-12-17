@@ -74,6 +74,10 @@ class RobotIO:
     def detect_goal(self, detectRange):
         raise NotImplementedError
 
+    def getLocationFacing(self):
+        """Used by interpretertest.py. Returns the robot's location and direction"""
+        return (self.xcoord, self.ycoord, self.facing.name)
+
 if __name__ == '__main__':
     robot = RobotIO()
     failed_tests = []

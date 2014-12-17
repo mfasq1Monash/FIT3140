@@ -129,8 +129,8 @@ class Interpreter:
             'comment':       lambda: None,
             'move':          lambda x: self.robotio.move(x),
             'turn':          lambda x: self.robotio.turn(x),
-            'detect-wall':   lambda x: self.robotio.detect_wall(),
-            'detect-goal':   lambda x: self.robotio.detect_goal()
+            'detect-wall':   lambda x: self.robotio.detect_wall(x),
+            'detect-goal':   lambda x: self.robotio.detect_goal(x)
         })
         
         return env
