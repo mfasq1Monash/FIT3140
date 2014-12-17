@@ -14,7 +14,7 @@ from kivy.uix.widget import Widget
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
 from kivy.properties import ListProperty, ObjectProperty
-from codeblock import CodeBlock
+# from codeblock import CodeBlock
 from functionlist import FunctionList
 
 
