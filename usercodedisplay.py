@@ -19,16 +19,16 @@ from kivy.uix.gridlayout import GridLayout
 class userCodeDisplay(GridLayout):
 
 	def __init__(self):
-		
-
-
-
-class treeViewTextInput(textInput, TreeViewNode):
-	super(treeViewWidget, self).__init__()
-
+		super(userCodeDisplay, self).__init__()
 
 	def on_textinput(self):
-		
+		pass
+
+	def on_touch_up(self, touch, *args):
+		pass
+
+	def on_touch_down(self, touch, *args):
+		pass	
 
 
 
