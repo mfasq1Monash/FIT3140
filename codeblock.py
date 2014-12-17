@@ -66,9 +66,9 @@ class primaryBlock(Magnet):
     def on_touch_down(self, touch, *args):
         if self.collide_point(*touch.pos):
             touch.grab(self)
-            self.remove_widget(self.img)
+            self.remove_widget(self)
 
-            self.app.root.add_widget(self.img)
+            self.app.root.add_widget(self)
             self.center = touch.pos
             self.img.center = touch.pos
             return True
