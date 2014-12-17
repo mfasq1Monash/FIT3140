@@ -73,7 +73,7 @@ class primaryBlock(Magnet):
             self.img.center = touch.pos
             return True
  
-        return super(DraggableImage, self).on_touch_down(touch, *args)
+        return super(primaryBlock, self).on_touch_down(touch, *args)
  
     def on_touch_move(self, touch, *args):
         grid_layout = self.app.root.ids.grid_layout
@@ -98,7 +98,7 @@ class primaryBlock(Magnet):
  
                 self.center = touch.pos
  
-        return super(DraggableImage, self).on_touch_move(touch, *args)
+        return super(primaryBlock, self).on_touch_move(touch, *args)
  
     def on_touch_up(self, touch, *args):
         if touch.grab_current == self:
@@ -107,7 +107,7 @@ class primaryBlock(Magnet):
             touch.ungrab(self)
             return True
  
-        return super(DraggableImage, self).on_touch_up(touch, *args)
+        return super(primaryBlock, self).on_touch_up(touch, *args)
 
     # def on_touch_down(self, touch):
     #     if self.collide_point(touch.x, touch.y):
