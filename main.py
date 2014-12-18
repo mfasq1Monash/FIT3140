@@ -16,6 +16,9 @@ from kivy.uix.button import Button
 from kivy.properties import ListProperty, ObjectProperty
 # from codeblock import CodeBlock
 from functionlist import FunctionList
+from kivy.uix.screenmanager import ScreenManager, Screen
+from programmerview import ProgrammerView
+
 
 
 #Kivy version check
@@ -25,30 +28,23 @@ require('1.8.0')
 class FunctionalProgrammerWidget(BoxLayout):
     # set all the properties of the Controller
 
-    text_colour = ListProperty([1, 0, 0, 1])	
-    
-    student_Program = ObjectProperty(None)
-    code_View = ObjectProperty(None)
+    text_colour = ListProperty([1, 0, 0, 1])
+    current_view = ObjectProperty(None)	
+    programmer_view = ObjectProperty(None)
     run_View = ObjectProperty(None)
     debug_View = ObjectProperty(None)
-    current_view = ObjectProperty(None)
     save_Buttton = ObjectProperty(None)
     load_Buttton = ObjectProperty(None)
     run_Buttton = ObjectProperty(None)
     debug_Buttton = ObjectProperty(None)
     exit_Buttton = ObjectProperty(None)
 
-    def __init__(self):
-            super(FunctionalProgrammerWidget, self).__init__()
-            
-            precode = open('function_file', 'r+')
-            commands = []
-            for line in precode:
-                commands.append(line)
-            self.ids.predefined_code.add_widget(FunctionList(commands))
-
-            self.ids.user_code.add_widget(FunctionList([]))
+    def __init__(self, **kwargs):
+        super(FunctionalProgrammerWidget, self).__init__(**kwargs)
+        pass
+        
           
+
 
 
     ''' saves user program to user defined location '''
@@ -58,7 +54,7 @@ class FunctionalProgrammerWidget(BoxLayout):
 
     ''' loads a user program from a user defined location '''
     def load_Button(self):
-        self.ids.run_Button.text = 'not yet implemented'
+        self.ids.load_Button.text = 'not yet implemented'
                     
 
     ''' displays maze and robot traversing through the maze '''
@@ -74,9 +70,16 @@ class FunctionalProgrammerWidget(BoxLayout):
             self.ids.debug_Button.text = 'not yet implemented'
 
 
+class FPWScreenManager(ScreenManager):
+    pass
+
+
+
 class FunctionalProgrammerApp(App):
     def build(self):
+
         return FunctionalProgrammerWidget()
 
 if __name__ == '__main__':
+    # import pdb; pdb.set_trace()
     FunctionalProgrammerApp().run()
