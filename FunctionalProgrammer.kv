@@ -10,34 +10,14 @@
 
 <FunctionalProgrammerWidget>
     orientation: 'vertical'
-    BoxLayout:
-    	id: current_View
-    	orientation: 'horizontal'
-    	BoxLayout:
-			id: predefined_code
 
-		BoxLayout:
-    		id: user_code
-
-    BoxLayout:
-    	id: labels_view
-    	orientation: 'horizontal'	
-    	size_hint: (1, .05)
-
-    	Label:
-			text: 'CODE BLOCKS'
-			size_hint: (1, 1)
-
-    	Label:
-    		text: 'USER PROGRAM'
-    		size_hint: (1, 1)
+	FPWScreenManager:
+		id: current_view		
 
 	BoxLayout:
-    	orientation: 'horizontal'
-    	id: buttons_Layout
+		orientation: 'horizontal'
+		id: buttons_Layout
 		size_hint: (1, .25)
-
-
 
 		Button:
 			id: save_Button
@@ -65,3 +45,5 @@
 			on_press: exit()
 
 			
+<FPWScreenManager>
+	ProgrammerView:
