@@ -10,6 +10,7 @@ this class is buttons that are used in the function list.
 from kivy.app import App
 from kivy.uix.button import Button
 from kivy.properties import ListProperty, NumericProperty
+from kivy.uix.floatlayout import FloatLayout
 from codeblock import PrimaryBlock
 
 
@@ -20,17 +21,19 @@ class PreCodeButton(Button):
 
 	code_Blocks = ListProperty([])
 
-	def __init__(self, text):
+	def __init__(self, text, dragLayout, destinationLayout):
 		super(PreCodeButton, self).__init__(size_hint=(1,None))
 		self.text = text
 		parameters = text.replace('(', '( ').replace(')', ' )').split()
-		
+		self.MydragLayout = dragLayout
+		self.destination_layout = destinationLayout
 		for param in parameters:
 			self.code_Blocks.append(PrimaryBlock(param))
 
 	def on_touch_down(self, touch, *args):
 		if self.collide_point(*touch.pos):
 			touch.grab(self)
+			
 			(self.previous_x, self.previous_y) = self.pos
  			self.center = touch.pos
 			return True
@@ -42,7 +45,11 @@ class PreCodeButton(Button):
 
 	def on_touch_up(self, touch, *args):
 		if touch.grab_current == self:
+			if self.destination_layout.collide_point(*touch.pos):
+				for iblock in code_Blocks:
+					self.destination_layout.add_widget(iblock)
 			self.pos = (self.previous_x, self.previous_y)
+			
 			touch.ungrab(self)
 		# need to add primaryblocks to user code window
 
