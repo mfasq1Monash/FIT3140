@@ -21,12 +21,19 @@ class userCodeDisplay(GridLayout):
 	def __init__(self):
 		super(userCodeDisplay, self).__init__()
 
+	
+
 	def on_textinput(self):
 		pass
 
 	def on_touch_up(self, touch, *args):
-		pass
-
+		if self.collide_point(*touch.pos):
+			if touch.grab_current != None:
+				try:
+					for iblock in touch.grab_current.code_Blocks
+						self.add_widget(iblock)
+				else:
+					pass
 	def on_touch_down(self, touch, *args):
 		pass	
 
