@@ -32,15 +32,13 @@ class FunctionList(ScrollView):
 		code_window.bind(minimum_height=code_window.setter('height'),)
 
 		for function in theList:
-			code_window.add_widget(PreCodeButton(function, dragLayout,
-				destinationLayout))
+			self.InsertInstruction(function, dragLayout, destinationLayout)
 
 		self.add_widget(code_window)
 
 	''' insert an instruction into the scrollable list '''
-	def InsertInstruction(self, name):
-		self.code_window.add_widget(PreCodeButton(name, size_hint=(1,None),
-			height=40))
+	def InsertInstruction(self, name, dragLayout, destinationLayout):
+		code_window.add_widget(PreCodeButton(name, dragLayout, destinationLayout))
 
 	''' remove an instruction from the scrollable list '''
 	def RemoveInstruction(self, name):
