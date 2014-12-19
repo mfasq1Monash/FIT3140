@@ -31,8 +31,8 @@ class FunctionList(ScrollView):
 		code_window = GridLayout(cols=1, size_hint=(1, None))
 		code_window.bind(minimum_height=code_window.setter('height'),)
 
-		for i in range(len(theList)):
-			code_window.add_widget(PreCodeButton(theList[i], dragLayout,
+		for function in theList:
+			code_window.add_widget(PreCodeButton(function, dragLayout,
 				destinationLayout))
 
 		self.add_widget(code_window)

@@ -30,9 +30,7 @@ class ProgrammerView(Screen):
 		grid = GridLayout()
 		grid.cols= 2
 		precode = open('function_file', 'r+')
-		commands = []
-		for line in precode:
-			commands.append(line)
+		commands = [line for line in precode]
 		v2 = FunctionList([], grid, None)
 		v2.destinationLayout = v2
 		v1 = FunctionList(commands, grid, v2)
