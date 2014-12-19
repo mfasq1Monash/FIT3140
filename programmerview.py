@@ -44,8 +44,14 @@ class ProgrammerView(Screen):
 
 		self.add_widget(grid)
 
+		def on_touch_down(self, touch):
+			pass
 
+		def on_touch_move(self, touch):
+			pass
 
+		def on_touch_up(self, touch):
+			pass
 
 class TestProgrammerView(App):
 	def build(self):
