@@ -32,8 +32,8 @@ class FunctionList(ScrollView):
 		code_window.bind(minimum_height=code_window.setter('height'),)
 
 		for function in theList:
-			self.InsertInstruction(function, dragLayout, destinationLayout)
-
+			code_window.add_widget(PreCodeButton(function, dragLayout, destinationLayout))
+		
 		self.add_widget(code_window)
 
 	''' insert an instruction into the scrollable list '''
@@ -52,7 +52,7 @@ class testFunctionList(App):
     	
         return FunctionList(['(+ 4 5)', '(- 3 5)', '(define x TRUE)',
          '(if x 5)','(* 3 7)', '(move 4)', '(turn 3)', '(/ 9 4)',
-          '(if x 5)','(* 3 7)', '(move 4)', '(turn 3)', '(/ 9 4)'])
+          '(if x 5)','(* 3 7)', '(move 4)', '(turn 3)', '(/ 9 4)'], None, None)
 
 if __name__ == '__main__':
     testFunctionList().run()
