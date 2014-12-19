@@ -1,7 +1,7 @@
 '''
 # Author:        Aaron Gruneklee, Michael Asquith
 # Created:       2014.12.08
-# Last Modified: 2014.12.15
+# Last Modified: 2014.12.19
 
 this is the main controler class it is responsible for displaying the 3 views and
 controls the 5 input buttons.
@@ -23,6 +23,7 @@ from programmerview import ProgrammerView
 
 #Kivy version check
 require('1.8.0')
+__version__ = '0.1'
 
 
 class FunctionalProgrammerWidget(BoxLayout):
