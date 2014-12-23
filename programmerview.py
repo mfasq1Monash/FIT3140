@@ -17,6 +17,7 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.label import Label
+from usercodedisplay import UserCodeDisplay
 
 
 
@@ -31,9 +32,12 @@ class ProgrammerView(Screen):
 		grid.cols= 2
 		precode = open('function_file', 'r+')
 		commands = [line for line in precode]
-		v2 = FunctionList([], grid, None)
-		v2.destinationLayout = v2
-		v1 = FunctionList(commands, grid, v2)
+		usercode = open('user_file', 'r+')
+		robotProgram = list(usercode)
+
+		v2 = UserCodeDisplay(robotProgram)
+		
+		v1 = FunctionList(commands)
 		
 		grid.add_widget(v1)
 
@@ -45,6 +49,7 @@ class ProgrammerView(Screen):
 		self.add_widget(grid)
 
 		def on_touch_down(self, touch):
+
 			pass
 
 		def on_touch_move(self, touch):
