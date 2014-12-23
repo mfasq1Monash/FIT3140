@@ -64,9 +64,13 @@ class PrimaryBlock(BoxLayout):
             self.add_widget(box)
 
 
-    
-    
+    def on_textinput():
+        super(TextInput, self)
 
+    
+    def on_touch_down(self, touch, *args):
+            super(PrimaryBlock, self).on_touch_down(touch)
+            pass    
   
 
     def on_textinput(self):

@@ -28,6 +28,7 @@ class ProgrammerView(Screen):
 
 	def __init__(self, **kwargs):
 		super(ProgrammerView, self).__init__(**kwargs)
+
 		grid = GridLayout()
 		grid.cols= 2
 		precode = open('function_file', 'r+')
@@ -47,9 +48,10 @@ class ProgrammerView(Screen):
 
 		self.add_widget(grid)
 
-		def on_touch_down(self, touch):
+		def on_touch_down(self, touch, *args):
+			super(ProgrammerView, self).on_touch_down(touch)
 
-			pass
+			pass	
 
 		def on_touch_move(self, touch):
 			pass
