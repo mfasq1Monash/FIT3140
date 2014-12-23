@@ -19,3 +19,4 @@ Release Notes
 	+ Unable to edit user program
 	+ Incomplete list of predefined functions
 	+ Robot does not rotate in maze
+	+ Load, save, debug, reset code buttons unimplemented.
