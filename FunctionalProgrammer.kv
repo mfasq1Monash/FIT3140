@@ -23,21 +23,25 @@
 			id: save_Button
 			text: 'SAVE'
 			on_press: root.save_Button()
+			on_release: self.text = "SAVE"
 
 		Button:
 			id: load_Button
 			text: 'LOAD'
 			on_press: root.load_Button()
+			on_release: self.text = "LOAD"
 
 		Button:
 			id: run_Button
 			text: 'RUN'
 			on_press: root.run_Button()
+			on_release: self.text = "RUN"
 
 		Button:
 			id: debug_Button
 			text: 'DEBUG'
 			on_press: root.debug_Button()
+			on_release: self.text = "DEBUG"
 
 		Button:
 			id: exit_Button
