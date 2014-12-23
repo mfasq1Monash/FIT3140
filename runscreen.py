@@ -10,7 +10,7 @@ A display for a maze that is passed as a list of lists
 from kivy.app import App
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.screenmanager import Screen
-from kivy.uix.button import Button
+from kivy.uix.image import Image
 from robotcontroller import RobotController
 
 
@@ -23,9 +23,17 @@ class RunScreen(Screen):
         grid = GridLayout()
         grid.cols = len(self.maze[0])
         grid.rows = len(self.maze)
-        for r in self.maze:
-            for c in self.maze:
-                grid.add_widget(Button())
+        for r in range(grid.rows):
+            for c in range(grid.cols):
+                if self.maze[r][c] == 1:
+                    title = 'Wall.png'
+                elif self.maze[r][c] == 0:
+                    title = 'Path.png'
+                elif self.maze[r][c] == 'S':
+                    title = 'Start.png'
+                elif self.maze[r][c] == 'G':
+                    title = 'Goal.png'
+                grid.add_widget(Image(source=title, allow_stretch=True))
         self.add_widget(grid)
 
         
