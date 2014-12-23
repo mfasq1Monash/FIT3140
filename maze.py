@@ -49,6 +49,9 @@ class Maze:
     def isGoal(self, xcoord, ycoord):
         return self.isItem(xcoord, ycoord, 'G')
 
+    def getMaze():
+        return self.grid
+
 if __name__ == '__main__':
     maze = Maze()
     failed_tests = []

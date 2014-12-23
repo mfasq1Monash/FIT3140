@@ -32,4 +32,5 @@ class RobotController():
     def getRobotLocationAndFacing():
         return self.robotio.getLocationAndFacing()
 
-    #def
+    def getMaze():
+        return self.maze.getMaze()
