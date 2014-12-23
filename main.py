@@ -67,6 +67,8 @@ class FunctionalProgrammerWidget(BoxLayout):
             else:
                 self.ids.run_Button.text = 'variables not defined'
 
+    def reset_Button(self):
+        self.ids.reset_button.text = 'not yet implemented'
 
 
     ''' displays maze and robot traversing through the maze alongside 

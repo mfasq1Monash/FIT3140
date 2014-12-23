@@ -44,6 +44,11 @@
 			on_release: self.text = "DEBUG"
 
 		Button:
+			id: reset_button
+			text: 'RESET CODE'
+			on_press: root.reset_Button()
+			on_release: self.text = 'RESET CODE'
+		Button:
 			id: exit_Button
 			text: 'EXIT'
 			on_press: exit()
