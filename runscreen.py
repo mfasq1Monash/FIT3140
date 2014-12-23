@@ -15,17 +15,31 @@ from robotcontroller import RobotController
 
 
 class RunScreen(Screen):
+    """Screen which displays the maze and the robot."""
     
     def __init__(self, filename, **kwargs):
         super(RunScreen, self).__init__(**kwargs)
         self.run_robot = RobotController()
         self.maze = self.run_robot.getMaze()
         grid = GridLayout()
+
+        # Should use maze methods, not take the maze's grid
         grid.cols = len(self.maze[0])
         grid.rows = len(self.maze)
+
+        self.draw_maze(grid)
+        
+        self.add_widget(grid)
+
+    def draw_maze(self, grid, prev=None):
+        (x, y, _) = self.run_robot.getRobotLocationAndFacing()
+
+        # Populate maze
         for r in range(grid.rows):
             for c in range(grid.cols):
-                if self.maze[r][c] == 1:
+                if c == x and r == y:
+                    title = 'Robot.png'
+                elif self.maze[r][c] == 1:
                     title = 'Wall.png'
                 elif self.maze[r][c] == 0:
                     title = 'Path.png'
@@ -36,14 +50,6 @@ class RunScreen(Screen):
                 grid.add_widget(Image(source=title,
                                       allow_stretch=True,
                                       keep_ratio=False))
-        self.add_widget(grid)
-
-        
-        
-
-    def setRobotController(self, newRobotController):
-        self.robotController = newRobotController
-
 
 class TestRunScreen(App):
     def build(self):
