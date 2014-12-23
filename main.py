@@ -43,7 +43,14 @@ class FunctionalProgrammerWidget(BoxLayout):
 
     def __init__(self, **kwargs):
         super(FunctionalProgrammerWidget, self).__init__(**kwargs)
-        pass
+        self.current_view = ScreenManager()
+        self.pv = ProgrammerView(name='pv')
+        self.current_view.add_widget(pv)
+        self.rv = RunScreen(name='rv')
+        self.current_view.add_widget(rv)
+        self.current_view.current = 'pv'
+
+        self.add
         
           
 
@@ -64,8 +71,10 @@ class FunctionalProgrammerWidget(BoxLayout):
             program = open('user_file', 'r').read()
             if 'x' not in program:
                 self.ids.run_Button.text = program
-                run_robot = RobotController()
-                run_robot.executeProgram('user_file')
+                self.current_view.current = 'rv'
+                self.rv.run_code
+                # run_robot = RobotController()
+                # run_robot.executeProgram('user_file')
 
                 
             else:
