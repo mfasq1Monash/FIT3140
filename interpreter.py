@@ -73,7 +73,6 @@ class Interpreter:
         self.robotio = newRobotIO
 
     def interpret(self, code):
-        import pdb; pdb.set_trace()
         """Parses and executes code a string in the form of:
         (method_name argument1 argument2)
         Arguments which are expressions must be placed in brackets.
@@ -134,7 +133,7 @@ class Interpreter:
             'turn':         lambda x: self.robotio.turn(x),
             'detect-wall':  lambda x: self.robotio.detect_wall(x),
             'detect-goal':  lambda x: self.robotio.detect_goal(x),
-            '@':            InterpretedList(),
+            '[]':           InterpretedList(),
             'build':        lambda x,y: [x] + y,
             'head':         lambda x: x[0],
             'tail':         lambda x: InterpretedList(x[1:])
