@@ -21,12 +21,10 @@ class PreCodeButton(Button):
 
 	code_Blocks = ListProperty([])
 
-	def __init__(self, text, dragLayout, destinationLayout):
+	def __init__(self, text):
 		super(PreCodeButton, self).__init__(size_hint=(1,None))
 		self.text = text
 		parameters = text.replace('(', '( ').replace(')', ' )').split()
-		self.MydragLayout = dragLayout
-		self.destination_layout = destinationLayout
 		for param in parameters:
 			self.code_Blocks.append(PrimaryBlock(param))
 
@@ -45,12 +43,9 @@ class PreCodeButton(Button):
 
 	def on_touch_up(self, touch, *args):
 		if touch.grab_current == self:
-			if self.destination_layout.collide_point(*touch.pos):
-				for iblock in code_Blocks:
-					self.destination_layout.add_widget(iblock)
 			self.pos = (self.previous_x, self.previous_y)
-			
 			touch.ungrab(self)
+
 		# need to add primaryblocks to user code window
 
 class TestPreCodeButton(App):
