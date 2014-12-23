@@ -1,7 +1,7 @@
 '''
 Author:        Michael Asquith, Aaron Gruneklee
 Created:       2014.12.12
-Last Modified: 2014.12.15
+Last Modified: 2014.12.23
 
 The input and output controls of a robot. It can turn 90 degree angles, move a
 given number of spaces in its current direction and detect walls and goals
@@ -74,8 +74,9 @@ class RobotIO:
     def detect_goal(self, detectRange):
         for i in range(-detectRange, detectRange+1):
             for j in range(-detectRange, detectRange+1):
-                if self.maze.isGoal(xcoord + i, ycoord + j):
-                    return abs(i) + abs(j) 
+                if self.maze.isGoal(self.xcoord + i, self.ycoord + j):
+                    return abs(i) + abs(j)
+        return 2*detectRange
                 
 
     def getLocationFacing(self):
@@ -166,4 +167,36 @@ if __name__ == '__main__':
     raw_input()
     
     # Detect Goal
+
+    print "---Detect Goal---"
+    robot = RobotIO()
+    failed_tests = []
+    tests = [
+        [4, 8, 'On goal', 0, 4],
+        [3, 8, 'One x co-ord away', 1, 10],
+        [5, 8, 'One x co-ord away', 1, 10],
+        [4, 7, 'One y co-ord away', 1, 10],
+        [4, 9, 'One y co-ord away', 1, 10],
+        [3, 7, 'One diagonal space away', 2, 10],
+        [-378, 200, 'A long distance away', 574, 400],
+        [-378, 200, 'Too far away', 20, 10]]
+
+    for i in range(len(tests)):
+        curr = tests[i]
+        robot.xcoord = curr[0]; robot.ycoord = curr[1]
+        result = robot.detect_goal(curr[4])
+        if curr[3] != result:
+            failed_tests.append(curr)
+
+        print "Test ", i
+        print curr[0:2], "should return", curr[3], "\n", result
+        print
+
+    if failed_tests:
+        print "failed tests are:"
+    else:
+        print "detect goal pass"
         
+    for i in range(len(failed_tests)):
+        print failed_tests[i]
+    raw_input()

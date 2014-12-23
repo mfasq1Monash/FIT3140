@@ -1,7 +1,7 @@
 '''
 # Author:        Michael Asquith, Aaron Gruneklee
 # Created:       2014.12.12
-# Last Modified: 2014.12.15
+# Last Modified: 2014.12.23
 
 A hard coded maze. It has a start location S (and facing South, a goal G,
 and can return whether a given square is a wall. All spaces outside the maze
@@ -32,7 +32,11 @@ class Maze:
         return 'South'
 
     def isItem(self, xcoord, ycoord, item):
-        return self.grid[ycoord][xcoord] == item
+        if (0 <= xcoord and self.xdimension > xcoord and
+            0 <= ycoord and self.ydimension > ycoord):
+            
+            return self.grid[ycoord][xcoord] == item
+        return False
             
     def isWall(self, xcoord, ycoord):
         if( xcoord < 0 or ycoord < 0 or
@@ -43,7 +47,7 @@ class Maze:
         return False
 
     def isGoal(self, xcoord, ycoord):
-        return isItem(xcoord, ycoord, 'G')
+        return self.isItem(xcoord, ycoord, 'G')
 
 if __name__ == '__main__':
     maze = Maze()
