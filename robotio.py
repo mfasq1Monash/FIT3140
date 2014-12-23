@@ -87,6 +87,7 @@ if __name__ == '__main__':
     failed_tests = []
 
     # Move and turn
+    print "---Move and turn---"
     tests = [
         ['m', 0, 'Control',                  4,0,'South'],
         ['m', 2, 'Moving South',             4,2,'South'],
@@ -117,17 +118,52 @@ if __name__ == '__main__':
         print curr[0], "should return", curr[3:], "\n", result 
         print
 
-    if failed_tests: print "failed tests are:"
-    else: print "turn and move pass"
+    if failed_tests:
+        print "failed tests are:"
+    else:
+        print "turn and move pass"
+        
     for i in range(len(failed_tests)):
-        print "Test ", i, " ", failed_tests[i]
+        print failed_tests[i]
     raw_input()
         
 
     # Detect Wall
 
-    #tests = [
-     #   [
+    print "---Detect Wall---"
+    robot = RobotIO()
+    failed_tests = []
+    tests = [
+        [4, 'Detect range too big',         5],
+        [4, 'Detect range exact',           4],
+        [3, 'Detect range too small',       3],
+        [2, 'Detect range too big (turned)',6],
+        [2, 'Detect range exact (turned)',  2],
+        [1, 'Detect range too small',       1],
+        [1, 'Detecting into wall',          5]]
 
+    for i in range(len(tests)):
+        curr = tests[i]
+
+        if i == 3 or i == 6:
+            robot.turn(1)
+
+        result = robot.detect_wall(curr[2])
+        if curr[0] != result:
+            failed_tests.append(curr)
+
+        print "Test ", i
+        print curr[2], "should return", curr[0], "\n", result
+        print
+
+    if failed_tests:
+        print "failed tests are:"
+    else:
+        print "detect wall pass"
+        
+    for i in range(len(failed_tests)):
+        print failed_tests[i]
+    raw_input()
+    
     # Detect Goal
         
