@@ -73,14 +73,14 @@ class RunScreen(Screen):
         if symbol == 'G':
             return 'Goal.png'
 
-    def execute_code(self):
+    def run_code(self):
+        Clock.schedule_interval(lambda dt:screen.update_maze(), .5)
         self.run_robot.executeProgram(self.file)
 
 class TestRunScreen(App):
     def build(self):
         screen = RunScreen('user_file')
-        Clock.schedule_interval(lambda dt:screen.update_maze(), .5)
-        Clock.schedule_once(lambda dt:screen.execute_code())
+        Clock.schedule_once(lambda dt:screen.run_code())
         return screen
 
 if __name__ == '__main__':
