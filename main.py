@@ -45,9 +45,9 @@ class FunctionalProgrammerWidget(BoxLayout):
         super(FunctionalProgrammerWidget, self).__init__(**kwargs)
         self.current_view = ScreenManager()
         self.pv = ProgrammerView(name='pv')
-        self.current_view.add_widget(pv)
+        self.current_view.add_widget(self.pv)
         self.rv = RunScreen(name='rv')
-        self.current_view.add_widget(rv)
+        self.current_view.add_widget(self.rv)
         self.current_view.current = 'pv'
 
         self.add
