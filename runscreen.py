@@ -12,7 +12,7 @@ from kivy.uix.gridlayout import GridLayout
 from robotio import RobotIO
 
 
-class RunView(GridLayout):
+class RunView(Screen):
 	
 	def __init__(self, ):
 		pass
