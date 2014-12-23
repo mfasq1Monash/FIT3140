@@ -74,7 +74,7 @@ class RunScreen(Screen):
             return 'Goal.png'
 
     def run_code(self):
-        Clock.schedule_interval(lambda dt:screen.update_maze(), .5)
+        Clock.schedule_interval(lambda dt:self.update_maze(), .5)
         self.run_robot.executeProgram(self.file)
 
 class TestRunScreen(App):
