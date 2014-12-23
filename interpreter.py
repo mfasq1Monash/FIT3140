@@ -134,7 +134,7 @@ class Interpreter:
             'detect-wall':  lambda x: self.robotio.detect_wall(x),
             'detect-goal':  lambda x: self.robotio.detect_goal(x),
             '[]':           InterpretedList(),
-            'build':        lambda x,y: [x] + y,
+            'build':        lambda x,y: InterpretedList([x] + y),
             'head':         lambda x: x[0],
             'tail':         lambda x: InterpretedList(x[1:])
         })

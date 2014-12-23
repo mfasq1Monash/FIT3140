@@ -10,6 +10,10 @@ class InterpreterTest(unittest.TestCase):
     def setUp(self):
         self.inter = Interpreter(RobotIO())
 
+    def listSetUp(self):
+        self.inter.interpret('(set list (build 4 (build 18 (build 39 []))))')
+        self.inter.interpret('(set meta (build list (build 3 [])))')
+
     def test_evaluateBoolean(self):
         # interpreting "True" or "False" should return the boolean
         self.assertEqual(self.inter.interpret('true'), True)
@@ -167,6 +171,34 @@ class InterpreterTest(unittest.TestCase):
         # n modulo 0 is impossible
         self.assertRaises(ZeroDivisionError,self.inter.interpret,('(% 2 0)'))
 
+    def test_build(self):
+        # build a list
+        self.assertEqual([3], self.inter.interpret('(build 3 [])'))
+        self.assertEqual([1,2], self.inter.interpret('(build 1 (build 2 []))'))
+
+        self.listSetUp() # list = [4,18,39]; meta = [list, 3]
+        
+        self.assertEqual([4,18,39], self.inter.interpret('list'))
+        self.assertEqual([[4,18,39],3], self.inter.interpret('meta'))
+
+    def test_head(self):
+        # list "head" method
+        self.listSetUp()
+        
+        self.assertEqual(4, self.inter.interpret('(head list)'))
+        self.assertEqual([4,18,39], self.inter.interpret('(head meta)'))
+
+        self.inter.interpret('(set list2 (head meta))')
+        self.assertEqual(4, self.inter.interpret('(head list2)'))
+
+    def test_tail(self):
+        # list "tail" method
+        self.listSetUp()
+        
+        self.assertEqual([18,39], self.inter.interpret('(tail list)'))
+        self.assertEqual([3], self.inter.interpret('(tail meta)'))
+        self.assertEqual([[4,18,39],3],
+                         self.inter.interpret('(build (head meta) (tail meta))'))
         
 if __name__ == '__main__':
     suite = unittest.TestLoader().loadTestsFromTestCase(InterpreterTest)
