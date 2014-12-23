@@ -60,9 +60,14 @@ class FunctionalProgrammerWidget(BoxLayout):
 
     ''' displays maze and robot traversing through the maze '''
     def run_Button(self):
-            # current_view = run_View
-            self.ids.run_Button.text = 'not yet implemented'
-                    
+            program = open('user_file', 'r').read()
+            if 'x' not in program:
+                self.ids.run_Button.text = program
+                
+            else:
+                self.ids.run_Button.text = 'variables not defined'
+
+
 
     ''' displays maze and robot traversing through the maze alongside 
     the user program as it steps through the code'''

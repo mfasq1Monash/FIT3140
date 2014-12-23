@@ -36,13 +36,17 @@ class UserCodeDisplay(RelativeLayout):
 		self = PrimaryBlock(self.text)
 		pass
 
-	def on_touch_up(self, touch, *args):
-		if self.collide_point(*touch.pos):
-			pass
-		pass
-	def on_touch_down(self, touch, *args):
-		pass	
+	# def on_touch_up(self, touch, *args):
+	# 	if self.collide_point(*touch.pos):
+	# 		pass
+	# 	pass
+	# def on_touch_down(self, touch, *args):
+	# 	pass	
 
+	def valid_syntax(self):
+		if 'x' not in program:
+			return True
+		return False
 
 
 
