@@ -33,7 +33,9 @@ class RunScreen(Screen):
                     title = 'Start.png'
                 elif self.maze[r][c] == 'G':
                     title = 'Goal.png'
-                grid.add_widget(Image(source=title, allow_stretch=True))
+                grid.add_widget(Image(source=title,
+                                      allow_stretch=True,
+                                      keep_ratio=False))
         self.add_widget(grid)
 
         
