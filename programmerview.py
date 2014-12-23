@@ -1,10 +1,10 @@
 '''
 # Author:        Aaron Gruneklee, Michael Asquith
 # Created:       2014.12.18
-# Last Modified: 2014.12.18
+# Last Modified: 2014.12.23
 
-this is the main controler class it is responsible for displaying the 3 views and
-controls the 5 input buttons.
+View which displays the user program on the right and usable function blocks on
+the left.
 
 '''
 
