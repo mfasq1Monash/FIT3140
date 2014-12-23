@@ -1,7 +1,7 @@
 '''
-Author: Michael Asquith
+Author: Michael Asquith, Aaron Gruneklee
 Created: 2014.12.08
-Last Modified: 2014.12.15
+Last Modified: 2014.12.23
 
 Interpreter for a simple functional programming language.
 Access with interpret(command)
@@ -22,6 +22,8 @@ class VariableAlreadySetException(Exception):
 class VariableNotFoundException(Exception):
     pass
 
+class InterpretedList(list):
+    pass
 
 class Procedure(object):
     """A user-defined method for the interpreter"""
@@ -71,6 +73,7 @@ class Interpreter:
         self.robotio = newRobotIO
 
     def interpret(self, code):
+        import pdb; pdb.set_trace()
         """Parses and executes code a string in the form of:
         (method_name argument1 argument2)
         Arguments which are expressions must be placed in brackets.
@@ -123,14 +126,18 @@ class Interpreter:
             '+':op.add, '-':op.sub, '*':op.mul, '/':op.div,
             '>':op.gt, '<':op.lt, '>=':op.ge, '<=':op.le, '=':op.eq,
             'define':None, 'if':None, 'set':None, 'comment':None,
-            '%':             lambda x,y: abs(x % y),
-            'and':           lambda x,y: x and y,
-            'or':            lambda x,y: x or y,
-            'not':           lambda x: not x,
-            'move':          lambda x: self.robotio.move(x),
-            'turn':          lambda x: self.robotio.turn(x),
-            'detect-wall':   lambda x: self.robotio.detect_wall(x),
-            'detect-goal':   lambda x: self.robotio.detect_goal(x)
+            '%':            lambda x,y: abs(x % y),
+            'and':          lambda x,y: x and y,
+            'or':           lambda x,y: x or y,
+            'not':          lambda x: not x,
+            'move':         lambda x: self.robotio.move(x),
+            'turn':         lambda x: self.robotio.turn(x),
+            'detect-wall':  lambda x: self.robotio.detect_wall(x),
+            'detect-goal':  lambda x: self.robotio.detect_goal(x),
+            '@':            InterpretedList(),
+            'build':        lambda x,y: [x] + y,
+            'head':         lambda x: x[0],
+            'tail':         lambda x: InterpretedList(x[1:])
         })
         
         return env
@@ -142,8 +149,10 @@ class Interpreter:
         
         # If x is a list, must be evaluating a method
         if isinstance(x, list):
+            if isinstance(x, InterpretedList):
+                return x
+            
             method = x.pop(0)
-
             # Defines a function
             if method == 'define':
                 try:

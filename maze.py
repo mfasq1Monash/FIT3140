@@ -1,5 +1,5 @@
 '''
-# Author:        Michael Asquith
+# Author:        Michael Asquith, Aaron Gruneklee
 # Created:       2014.12.12
 # Last Modified: 2014.12.15
 
