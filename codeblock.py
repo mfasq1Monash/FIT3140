@@ -53,7 +53,7 @@ class PrimaryBlock(BoxLayout):
     def __init__(self, typeValue):
         super(PrimaryBlock, self).__init__()
         self.ids.size_hint = (None,None)
-        if str(typeValue).capitalize in ['X','Y', 'Z']:
+        if typeValue in ['X','Y', 'Z','x', 'y', 'z']:
             box = TextInput(text= 'enter value or drag code block', size_hint=(.3,1))
             
             self.add_widget(box)
@@ -65,7 +65,14 @@ class PrimaryBlock(BoxLayout):
 
 
     
+    
 
+  
+
+    def on_textinput(self):
+        
+        # super(TextInput, self)
+        self = self.addCode(self.text)
 
 
 class testCodeBlock(App):
