@@ -16,8 +16,7 @@ from maze import Maze
 class RobotController():
     """studentProgram is the robot's instructions"""
 
-    def __init__(self, studentProgram):
-        self.program = studentProgram
+    def __init__(self):
         self.maze = Maze()
         self.robotio = RobotIO(self.maze)
         
