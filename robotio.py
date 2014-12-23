@@ -35,8 +35,8 @@ class Facing:
 class RobotIO:
     """The input and output of a robot."""
 
-    def __init__(self):
-        self.maze = Maze()
+    def __init__(self, newMaze=Maze()):
+        self.maze = newMaze
         self.xcoord, self.ycoord = self.maze.getStartLocation()
         self.facing = Facing(self.maze.getStartFacing())
 
@@ -79,8 +79,8 @@ class RobotIO:
         return 2*detectRange
                 
 
-    def getLocationFacing(self):
-        """Used by interpretertest.py. Returns the robot's location and direction"""
+    def getLocationAndFacing(self):
+        """Returns the robot's location and direction"""
         return (self.xcoord, self.ycoord, self.facing.name)
 
 if __name__ == '__main__':

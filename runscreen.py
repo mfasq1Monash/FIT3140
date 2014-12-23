@@ -1,7 +1,7 @@
 '''
 # Author:        Aaron Gruneklee, Michael Asquith
 # Created:       2014.12.12
-# Last Modified: 2014.12.15
+# Last Modified: 2014.12.23
 
 A display for a maze that is passed as a list of lists
 
@@ -12,17 +12,17 @@ from kivy.uix.gridlayout import GridLayout
 from robotio import RobotIO
 
 
-class RunView(Screen):
+class RunScreen(Screen):
 	
-	def __init__(self, ):
-		pass
+	def __init__(self, *kwargs):
+		super(RunScreen, self).__init__(**kwargs)
 
 
 
 
-class TestRunView(App):
+class TestRunScreen(App):
 	def build(self):
-		return RunView()
+		return RunScreen()
 
 if __name__ == '__main__':
-	TestRunView().run()
+	TestRunScreen().run()

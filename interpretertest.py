@@ -113,18 +113,18 @@ class InterpreterTest(unittest.TestCase):
     def test_move(self):
         # robot will move
         self.inter.robotio.move(2)
-        temp = self.inter.robotio.getLocationFacing()
+        temp = self.inter.robotio.getLocationAndFacing()
         self.inter = Interpreter(RobotIO())
         self.inter.interpret('(move 2)')
-        self.assertEqual(temp, self.inter.robotio.getLocationFacing())
+        self.assertEqual(temp, self.inter.robotio.getLocationAndFacing())
 
     def test_turn(self):
         # robot will turn
         self.inter.robotio.turn(1)
-        temp = self.inter.robotio.getLocationFacing()
+        temp = self.inter.robotio.getLocationAndFacing()
         self.inter = Interpreter(RobotIO())
         self.inter.interpret('(turn 1)')
-        self.assertEqual(temp, self.inter.robotio.getLocationFacing())
+        self.assertEqual(temp, self.inter.robotio.getLocationAndFacing())
 
     def test_detectwall(self):
         # robot will detect wall
@@ -132,7 +132,7 @@ class InterpreterTest(unittest.TestCase):
 
     def test_detectgoal(self):
         # robot will detect goal
-        raise NotImplementedError
+        self.assertEqual(8, self.inter.interpret('(detect-goal 10)'))
 
     def test_equality(self):
         # integer equality
