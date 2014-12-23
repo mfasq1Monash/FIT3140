@@ -21,7 +21,7 @@ class RobotController():
         self.robotio = RobotIO(self.maze)
         
 
-    def executeProgram(self):
+    def executeProgram(self, programfile):
         """Executes the robot's program"""
         code = open('user_file',r)
         inter = Interpreter(self.robotio)
