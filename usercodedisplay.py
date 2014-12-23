@@ -25,23 +25,26 @@ class UserCodeDisplay(RelativeLayout):
 		layout = GridLayout(cols=6)
 
 
-		program = userProgram.replace('(', '( ').replace(')', ' )').split()		
+		program_file = userProgram.replace('(', '( ').replace(')', ' )').split()
+		program = program_file		
 		for element in program:
 			layout.add_widget(PrimaryBlock(element))
 		
 		self.add_widget(layout)
 
 
+
+
 	def on_textinput(self):
-		self = PrimaryBlock(self.text)
-		pass
+		return True
 
 	# def on_touch_up(self, touch, *args):
 	# 	if self.collide_point(*touch.pos):
 	# 		pass
 	# 	pass
-	# def on_touch_down(self, touch, *args):
-	# 	pass	
+	def on_touch_down(self, touch, *args):
+		super(UserCodeDisplay, self).on_touch_down(touch)
+		pass	
 
 	def valid_syntax(self):
 		if 'x' not in program:
