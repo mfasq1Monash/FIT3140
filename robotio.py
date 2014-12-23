@@ -100,11 +100,13 @@ if __name__ == '__main__':
 
     for i in range(len(tests)):
         curr = tests[i]
+        
         if curr[0] == 'm':
             robot.move(curr[1])
             result = [robot.xcoord, robot.ycoord]
             if result != tests[i][3:5]:
                 failed_tests.append(curr)
+                
         if curr[0] == 't':
             robot.turn(curr[1])
             result = robot.facing.name
@@ -123,6 +125,9 @@ if __name__ == '__main__':
         
 
     # Detect Wall
+
+    #tests = [
+     #   [
 
     # Detect Goal
         
