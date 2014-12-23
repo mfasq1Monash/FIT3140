@@ -43,7 +43,8 @@ class UserCodeDisplay(RelativeLayout):
 	# 		pass
 	# 	pass
 	def on_touch_down(self, touch, *args):
-		super(UserCodeDisplay, self).on_touch_down(touch)
+		if self.collide_point(*touch.pos):
+			super(UserCodeDisplay, self).on_touch_down(touch)
 		pass	
 
 	def valid_syntax(self):
