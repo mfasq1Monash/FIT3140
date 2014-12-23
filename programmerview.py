@@ -50,8 +50,7 @@ class ProgrammerView(Screen):
 
 		def on_touch_down(self, touch, *args):
 			super(ProgrammerView, self).on_touch_down(touch)
-
-			pass	
+	
 
 		def on_touch_move(self, touch):
 			pass
