@@ -23,7 +23,7 @@ class FunctionList(ScrollView):
 
 	code_List = ListProperty(None)
 
-	def __init__(self, theList, dragLayout, destinationLayout):
+	def __init__(self, theList):
 		super(FunctionList, self).__init__()
 		self.size_hint = (1, 1)
 		self.scroll_type = ['content', 'bars']
@@ -32,13 +32,13 @@ class FunctionList(ScrollView):
 		code_window.bind(minimum_height=code_window.setter('height'),)
 
 		for function in theList:
-			code_window.add_widget(PreCodeButton(function, dragLayout, destinationLayout))
+			code_window.add_widget(PreCodeButton(function))
 		
 		self.add_widget(code_window)
 
 	''' insert an instruction into the scrollable list '''
-	def InsertInstruction(self, name, dragLayout, destinationLayout):
-		code_window.add_widget(PreCodeButton(name, dragLayout, destinationLayout))
+	def InsertInstruction(self, name):
+		code_window.add_widget(PreCodeButton(name))
 
 	''' remove an instruction from the scrollable list '''
 	def RemoveInstruction(self, name):
@@ -52,7 +52,7 @@ class testFunctionList(App):
     	
         return FunctionList(['(+ 4 5)', '(- 3 5)', '(define x TRUE)',
          '(if x 5)','(* 3 7)', '(move 4)', '(turn 3)', '(/ 9 4)',
-          '(if x 5)','(* 3 7)', '(move 4)', '(turn 3)', '(/ 9 4)'], None, None)
+          '(if x 5)','(* 3 7)', '(move 4)', '(turn 3)', '(/ 9 4)'])
 
 if __name__ == '__main__':
     testFunctionList().run()
