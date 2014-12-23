@@ -21,7 +21,7 @@ class RobotController():
 
     def executeProgram(self):
         """Executes the robot's program"""
+        code = open('user_file',r)
         inter = Interpreter(self.robotio)
-        for codeBlock in self.program:
-            inter.interpret(str(codeBlock))
-
+        for line in self.program:
+            inter.interpret(code)
