@@ -28,8 +28,8 @@ class RobotController():
         for line in self.program:
             inter.interpret(code)
 
-    def getRobotLocationAndFacing():
+    def getRobotLocationAndFacing(self):
         return self.robotio.getLocationAndFacing()
 
-    def getMaze():
+    def getMaze(self):
         return self.maze.getMaze()

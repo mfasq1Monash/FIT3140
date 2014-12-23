@@ -49,7 +49,7 @@ class Maze:
     def isGoal(self, xcoord, ycoord):
         return self.isItem(xcoord, ycoord, 'G')
 
-    def getMaze():
+    def getMaze(self):
         return self.grid
 
 if __name__ == '__main__':
