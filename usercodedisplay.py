@@ -47,6 +47,12 @@ class UserCodeDisplay(RelativeLayout):
 			super(UserCodeDisplay, self).on_touch_down(touch)
 		pass	
 
+		def on_touch_up(self, touch, *args):
+		if self.collide_point(*touch.pos):
+			super(UserCodeDisplay, self).on_touch_up(touch)
+			 
+		pass	
+
 	def valid_syntax(self):
 		if 'x' not in program:
 			return True
