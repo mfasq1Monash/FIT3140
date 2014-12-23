@@ -35,7 +35,8 @@ class UserCodeDisplay(RelativeLayout):
 
 
 
-	def on_textinput(self):
+	def on_enter(self):
+		
 		return True
 
 	# def on_touch_up(self, touch, *args):
@@ -47,9 +48,10 @@ class UserCodeDisplay(RelativeLayout):
 			super(UserCodeDisplay, self).on_touch_down(touch)
 		pass	
 
-		def on_touch_up(self, touch, *args):
+	def on_touch_up(self, touch, *args):
 		if self.collide_point(*touch.pos):
 			super(UserCodeDisplay, self).on_touch_up(touch)
+
 			 
 		pass	
 
