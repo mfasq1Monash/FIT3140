@@ -21,12 +21,12 @@ class RobotController():
         self.robotio = RobotIO(self.maze)
         
 
-    def executeProgram(self, programfile):
+    def executeProgram(self, filename):
         """Executes the robot's program"""
-        code = open('user_file','r')
+        code = open(filename, 'r')
         inter = Interpreter(self.robotio)
-        for line in self.program:
-            inter.interpret(code)
+        for line in code:
+            inter.interpret(line)
 
     def getRobotLocationAndFacing(self):
         return self.robotio.getLocationAndFacing()

@@ -11,6 +11,7 @@ from kivy.app import App
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.screenmanager import Screen
 from kivy.uix.image import Image
+from kivy.clock import Clock
 from robotcontroller import RobotController
 
 
@@ -19,6 +20,7 @@ class RunScreen(Screen):
     
     def __init__(self, filename, **kwargs):
         super(RunScreen, self).__init__(**kwargs)
+        self.file = filename
         self.run_robot = RobotController()
         self.maze = self.run_robot.getMaze()
         grid = GridLayout()
@@ -28,32 +30,58 @@ class RunScreen(Screen):
         grid.rows = len(self.maze)
 
         self.draw_maze(grid)
-        
         self.add_widget(grid)
 
-    def draw_maze(self, grid, prev=None):
+        (x, y, _) = self.run_robot.getRobotLocationAndFacing()
+        self.oldRobotLocale = (x, y)
+        
+
+    def draw_maze(self, grid):            
+            
         (x, y, _) = self.run_robot.getRobotLocationAndFacing()
 
         # Populate maze
+        self.imageGrid = []
         for r in range(grid.rows):
+            imageRow = []
             for c in range(grid.cols):
                 if c == x and r == y:
                     title = 'Robot.png'
-                elif self.maze[r][c] == 1:
-                    title = 'Wall.png'
-                elif self.maze[r][c] == 0:
-                    title = 'Path.png'
-                elif self.maze[r][c] == 'S':
-                    title = 'Start.png'
-                elif self.maze[r][c] == 'G':
-                    title = 'Goal.png'
-                grid.add_widget(Image(source=title,
-                                      allow_stretch=True,
-                                      keep_ratio=False))
+                else:
+                    title = self.imageName(self.maze[r][c])
+                newImage = Image(source=title,
+                                 allow_stretch=True,
+                                 keep_ratio=False)
+                imageRow.append(newImage)
+                grid.add_widget(newImage)
+            self.imageGrid.append(imageRow)
+
+    def update_maze(self):
+        (oldx, oldy) = self.oldRobotLocale
+        self.imageGrid[oldy][oldx].source = self.imageName(self.maze[oldy][oldx])
+        (newx, newy, _) = self.run_robot.getRobotLocationAndFacing()
+        self.imageGrid[newy][newx].source = 'Robot.png'
+        self.oldRobotLocale = (newx, newy)
+
+    def imageName(self,symbol):
+        if symbol == 1:
+            return 'Wall.png'
+        if symbol == 0:
+            return 'Path.png'
+        if symbol == 'S':
+            return 'Start.png'
+        if symbol == 'G':
+            return 'Goal.png'
+
+    def execute_code(self):
+        self.run_robot.executeProgram(self.file)
 
 class TestRunScreen(App):
     def build(self):
-        return RunScreen('user_file')
+        screen = RunScreen('user_file')
+        Clock.schedule_interval(lambda dt:screen.update_maze(), .5)
+        Clock.schedule_once(lambda dt:screen.execute_code())
+        return screen
 
 if __name__ == '__main__':
     TestRunScreen().run()
