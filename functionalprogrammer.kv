@@ -11,9 +11,8 @@
 <FunctionalProgrammerWidget>
     orientation: 'vertical'
 
-	FPWScreenManager:
-		id: current_view		
-
+    
+	
 	BoxLayout:
 		orientation: 'horizontal'
 		id: buttons_Layout
@@ -35,7 +34,7 @@
 			id: run_Button
 			text: 'RUN'
 			on_press: root.run_Button()
-			on_release: self.text = "RUN"
+			
 
 		Button:
 			id: debug_Button
@@ -54,5 +53,4 @@
 			on_press: exit()
 
 			
-<FPWScreenManager>
-	ProgrammerView:
+

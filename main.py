@@ -19,7 +19,7 @@ from functionlist import FunctionList
 from kivy.uix.screenmanager import ScreenManager, Screen
 from programmerview import ProgrammerView
 from robotcontroller import RobotController
-
+from runscreen import RunScreen
 
 
 #Kivy version check
@@ -46,11 +46,11 @@ class FunctionalProgrammerWidget(BoxLayout):
         self.current_view = ScreenManager()
         self.pv = ProgrammerView(name='pv')
         self.current_view.add_widget(self.pv)
-        self.rv = RunScreen(name='rv')
+        self.rv = RunScreen('user_file', name='rv')
         self.current_view.add_widget(self.rv)
         self.current_view.current = 'pv'
+        self.add_widget(self.current_view)
 
-        self.add
         
           
 
@@ -68,14 +68,18 @@ class FunctionalProgrammerWidget(BoxLayout):
 
     ''' displays maze and robot traversing through the maze '''
     def run_Button(self):
-            program = open('user_file', 'r').read()
-            if 'x' not in program:
-                self.ids.run_Button.text = program
-                self.current_view.current = 'rv'
-                self.rv.run_code
-                # run_robot = RobotController()
-                # run_robot.executeProgram('user_file')
-
+            if self.current_view.current == 'pv':
+                program = open('user_file', 'r').read()
+                if 'x' not in program:
+                    self.ids.run_Button.text = program
+                    self.current_view.current = 'rv'
+                    self.rv.run_code()
+                    self.ids.run_Button.text = 'BACK'
+                    # run_robot = RobotController()
+                    # run_robot.executeProgram('user_file')
+            elif self.current_view.current == 'rv':
+                self.current_view.current = 'pv'
+                self.ids.run_Button.text = 'RUN'
                 
             else:
                 self.ids.run_Button.text = 'variables not defined'
@@ -89,6 +93,8 @@ class FunctionalProgrammerWidget(BoxLayout):
     def debug_Button(self):
             # current_view = debug_View
             self.ids.debug_Button.text = 'not yet implemented'
+
+    
 
 
 class FPWScreenManager(ScreenManager):
