@@ -15,13 +15,11 @@ from codeblock import CodeBlock
 class RobotController():
     """studentProgram is the robot's instructions"""
 
-    def __init__(self, studentProgram):
-        self.program = studentProgram
+    def __init__(self):
         self.robotio = RobotIO()
 
-    def executeProgram(self):
+    def executeProgram(self, instructionfile):
         """Executes the robot's program"""
-        code = open('user_file',r)
+        code = open(instructionfile,'r').read()
         inter = Interpreter(self.robotio)
-        for line in self.program:
-            inter.interpret(code)
+        inter.interpret(code)

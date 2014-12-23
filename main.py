@@ -18,6 +18,7 @@ from kivy.properties import ListProperty, ObjectProperty
 from functionlist import FunctionList
 from kivy.uix.screenmanager import ScreenManager, Screen
 from programmerview import ProgrammerView
+from robotcontroller import RobotController
 
 
 
@@ -63,6 +64,9 @@ class FunctionalProgrammerWidget(BoxLayout):
             program = open('user_file', 'r').read()
             if 'x' not in program:
                 self.ids.run_Button.text = program
+                run_robot = RobotController()
+                run_robot.executeProgram('user_file')
+
                 
             else:
                 self.ids.run_Button.text = 'variables not defined'
