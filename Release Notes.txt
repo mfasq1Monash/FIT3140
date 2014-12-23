@@ -5,7 +5,10 @@ Release Notes
 1.0
 
 	+ added ui with working exit button
-
+	+ have scrolling list of predefined functions
+	+ have run button that calls a change of screen and passes file location to robot controller
+	+ can select and drag precodebuttons - currently unable to have them leave functionlist/scrollview
+	+ interpreter implemented 
 
 
 
