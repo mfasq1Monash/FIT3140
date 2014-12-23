@@ -1,2 +1,0 @@
-''' screen manager test '''
-
