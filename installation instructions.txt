@@ -1,0 +1,21 @@
+AMFLI installation instructions
+
+1. Download AMFLI-0.1-debug.apk to device
+
+2. Using the devices file explorer go to AMFLI-0.1-debug.apk and press icon
+
+3. If dialog pops up that the app is untrusted you will need to find in settings an option to allow installation of unknown apps.  generally found in security settings.
+
+4. Once installed a popup may appear asking to run select yes
+
+5. If the popup did not appear you should be able to search list of installed apps and find AMFLI select this to start the app.
+
+
+
+
+User Guide
+
+To create a program select a code block from the left hand list and drag it into the right hand side.  
+
+
+To run the program select 'RUN' this will take you to a maze display and execute the instructions in the users program.
