@@ -16,24 +16,22 @@ from kivy.uix.treeview import TreeView, TreeViewNode
 from kivy.uix.gridlayout import GridLayout
 
 
-class userCodeDisplay(GridLayout):
 
-	def __init__(self):
-		super(userCodeDisplay, self).__init__()
+class UserCodeDisplay(GridLayout):
 
-	
+	def __init__(self, userProgram):
+		super(UserCodeDisplay, self).__init__()
+		program = userProgram.replace('(', '( ').replace(')', ' )').split()		
+		for 
 
 	def on_textinput(self):
+		self = PrimaryBlock(self.text)
 		pass
 
 	def on_touch_up(self, touch, *args):
 		if self.collide_point(*touch.pos):
-			if touch.grab_current != None:
-				try:
-					for iblock in touch.grab_current.code_Blocks
-						self.add_widget(iblock)
-				else:
-					pass
+			pass
+		pass
 	def on_touch_down(self, touch, *args):
 		pass	
 
@@ -43,13 +41,11 @@ class userCodeDisplay(GridLayout):
 
 class testUserCodeDisplay(App):
 
-	def test_tree_display(s):
-		tree_code = '(/ (+, 3, y), 9) '
-        display_tree(tree_code)
+	
 
-    def build(self):
-    	return userCodeDisplay()
+	def build(self):
+		return UserCodeDisplay()
 
 
-if__name__ == '__main__':
+if __name__ == '__main__':
 	testUserCodeDisplay().run()
