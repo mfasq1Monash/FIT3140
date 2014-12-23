@@ -5,10 +5,17 @@ Release Notes
 1.0
 
 	+ added ui with working exit button
+	
+2.0
 	+ have scrolling list of predefined functions
 	+ have run button that calls a change of screen and passes file location to robot controller
 	+ can select and drag precodebuttons - currently unable to have them leave functionlist/scrollview
 	+ interpreter implemented 
 
-
-
+	Known problems:
+	+ No code block to represent an empty list
+	+ Code runs immediately on clicking the run button, too fast to watch
+	+ No exception catching from errors in the interpreter
+	+ Unable to edit user program
+	+ Incomplete list of predefined functions
+	+ Robot does not rotate in maze
