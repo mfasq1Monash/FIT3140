@@ -33,9 +33,8 @@ class ProgrammerView(Screen):
 		precode = open('function_file', 'r+')
 		commands = [line for line in precode]
 		usercode = open('user_file', 'r+')
-		robotProgram = list(usercode)
-
-		v2 = UserCodeDisplay(robotProgram)
+		
+		v2 = UserCodeDisplay(usercode.read())
 		
 		v1 = FunctionList(commands)
 		
