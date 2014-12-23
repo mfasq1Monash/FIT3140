@@ -20,21 +20,7 @@ class RunScreen(Screen):
     
     def __init__(self, filename, **kwargs):
         super(RunScreen, self).__init__(**kwargs)
-        self.file = filename
-        self.run_robot = RobotController()
-        self.maze = self.run_robot.getMaze()
-        grid = GridLayout()
-
-        # Should use maze methods, not take the maze's grid
-        grid.cols = len(self.maze[0])
-        grid.rows = len(self.maze)
-
-        self.draw_maze(grid)
-        self.add_widget(grid)
-
-        (x, y, _) = self.run_robot.getRobotLocationAndFacing()
-        self.oldRobotLocale = (x, y)
-        
+        self.file = filename        
 
     def draw_maze(self, grid):            
             
@@ -74,6 +60,19 @@ class RunScreen(Screen):
             return 'Goal.png'
 
     def run_code(self):
+        self.run_robot = RobotController()
+        self.maze = self.run_robot.getMaze()
+        grid = GridLayout()
+
+        # Should use maze methods, not take the maze's grid
+        grid.cols = len(self.maze[0])
+        grid.rows = len(self.maze)
+
+        self.draw_maze(grid)
+        self.add_widget(grid)
+
+        (x, y, _) = self.run_robot.getRobotLocationAndFacing()
+        self.oldRobotLocale = (x, y)
         Clock.schedule_interval(lambda dt:self.update_maze(), .5)
         self.run_robot.executeProgram(self.file)
 
