@@ -30,10 +30,10 @@ class FunctionalProgrammerWidget(BoxLayout):
     # set all the properties of the Controller
 
     text_colour = ListProperty([1, 0, 0, 1])
-    current_view = ObjectProperty(None)	
-    programmer_view = ObjectProperty(None)
-    run_View = ObjectProperty(None)
-    debug_View = ObjectProperty(None)
+    # current_view = ObjectProperty(None)	
+    # programmer_view = ObjectProperty(None)
+    # run_View = ObjectProperty(None)
+    # debug_View = ObjectProperty(None)
     save_Buttton = ObjectProperty(None)
     load_Buttton = ObjectProperty(None)
     run_Buttton = ObjectProperty(None)
